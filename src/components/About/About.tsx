@@ -30,7 +30,7 @@ export const About = () => {
 
           <div className="about__image-wrapper">
             <img
-              src="./Ale.png"
+              src="../src/assets/Ale.png"
               alt="Alejandra Avendaño"
               className="about__image"
             />

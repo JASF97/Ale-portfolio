@@ -1,20 +1,21 @@
 import "./ProjectCard.scss";
+import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
+  slug: string;
   title: string;
   description: string;
   imageSrc: string;
   imageAlt?: string;
-  link?: string;
   tags?: string[];
 }
 
 export const ProjectCard = ({
+  slug,
   title,
   description,
   imageSrc,
   imageAlt = "Project image",
-  link = "#",
   tags = [],
 }: ProjectCardProps) => {
   return (
@@ -22,10 +23,7 @@ export const ProjectCard = ({
       <div className="project-card__image-wrapper">
         <img src={imageSrc} alt={imageAlt} className="project-card__image" />
         <div className="project-card__overlay">
-          <a
-            href={`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`}
-            className="project-card__view"
-          >
+          <Link to={`/project/${slug}`} className="project-card__view">
             {" "}
             <svg
               width="48"
@@ -37,13 +35,13 @@ export const ProjectCard = ({
               <path
                 d="M7 17L17 7M17 7H9M17 7V15"
                 stroke="#ffffff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>{" "}
             Ver proyecto
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -53,10 +51,7 @@ export const ProjectCard = ({
           <p className="project-card__description">{description}</p>
         )}
 
-        <a
-          href={`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`}
-          className="project-card__mobile-cta"
-        >
+        <Link to={`/project/${slug}`} className="project-card__mobile-cta">
           Ver proyecto
           <svg
             width="24"
@@ -68,12 +63,12 @@ export const ProjectCard = ({
             <path
               d="M7 17L17 7M17 7H9M17 7V15"
               stroke="#1F1F3A"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
-        </a>
+        </Link>
 
         {tags.length > 0 && (
           <div className="project-card__tags">

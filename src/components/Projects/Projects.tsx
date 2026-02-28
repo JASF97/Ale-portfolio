@@ -17,11 +17,11 @@ export const Projects = () => {
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
+              slug={project.slug}
               title={project.title}
               description={project.description}
               imageSrc={project.imageSrc}
               imageAlt={project.imageAlt}
-              link={project.link}
               tags={project.tags}
             />
           ))}

@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.marquee {
+    width: stretch;
+    position: absolute;
+    overflow: hidden;
+    padding: 24px 0;
+  
+    &__track {
+      display: none;
+      align-items: center;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+
+      @include min-width(900px) {
+        display: flex;
+      }
+    }
+  
+    &__item {
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      line-height: 100%;
+      color: #8E949A;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding-right: 24px;
+    }
+  
+    &__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #8E949A;
+      flex-shrink: 0;
+    }
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  

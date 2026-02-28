@@ -1,16 +1,22 @@
-import { Header, Hero, Projects, About, Contact, Footer } from "./components";
+import { Header, Footer } from "./components";
 import "./styles/index.scss";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
+import { ProjectDetail } from "./components/ProjectDetail/ProjectDetail";
 
 function App() {
+  const location = useLocation();
+  const isLanding = location.pathname === "/";
+
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <Projects />
-        <About />
-        <Contact />
-      </main>
+      {isLanding && <Header />}
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/project/:slug" element={<ProjectDetail />} />
+        <Route path="/projects" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
       <Footer />
     </>
   );

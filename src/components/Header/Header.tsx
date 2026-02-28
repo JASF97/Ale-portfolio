@@ -1,6 +1,8 @@
 import "./Header.scss";
 
 import { useEffect, useState } from "react";
+import logoMark from "../../assets/pink-butterfly.svg";
+import menuIcon from "../../assets/menu-fill.svg";
 
 interface NavLink {
   label: string;
@@ -40,7 +42,7 @@ export const Header = ({
     <header className="header">
       <div className="header__container">
         <a href="/" className="header__logo">
-          <img className="header__logo-img" src="/Mariposa-rosa.svg" alt="" />
+          <img className="header__logo-img" src={logoMark} alt="" />
           {logo}
         </a>
 
@@ -65,7 +67,7 @@ export const Header = ({
           onClick={() => setIsMenuOpen((v) => !v)}
         >
           <span>
-            <img className="header__menu-img" src="/menu-fill.svg" alt="" />
+            <img className="header__menu-img" src={menuIcon} alt="" />
           </span>
         </button>
       </div>

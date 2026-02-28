@@ -2,80 +2,226 @@
 @use '../../styles/mixins' as *;
 
 .project-detail {
-  padding: 120px 0 60px;
   min-height: 100vh;
   background-color: $color-bg-light;
 
-  @include max-width($breakpoint-md) {
-    padding: 100px 0 40px;
-  }
-
   &__container {
     @include container;
-    max-width: 1200px;
+    padding: 0px;
   }
 
-  // Header del proyecto
+  // Header del proyecto (background distinto por proyecto)
   &__header {
-    margin-bottom: 60px;
+    color: $color-text-white;
+    min-height: 400px;
+
+    
+
+    @include min-width($breakpoint-md) {
+      padding: $spacing-3xl $spacing-xl $spacing-4xl;
+    }
 
     @include max-width($breakpoint-md) {
-      margin-bottom: 40px;
+      padding: $spacing-xl $spacing-md $spacing-2xl;
     }
+
+    @include min-width($breakpoint-xl) {
+      padding: 40px 120px 80px 120px;
+    }
+  }
+
+  &__header-inner {
+    margin: 0 auto;
   }
 
   &__back {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    color: $color-primary;
+    gap: $spacing-sm;
+    width: 100%;
+    height: 56px;
+    color: #FFFFFF;
     text-decoration: none;
-    font-weight: $font-weight-medium;
-    margin-bottom: 32px;
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    margin-bottom: $spacing-3xl;
+    padding: $spacing-sm $spacing-md;
+    background: #FFFFFF1A;
+    border-radius: 100px;
     transition: opacity $transition-base;
 
+    @include max-width($breakpoint-md) {
+      margin-bottom: $spacing-lg;
+    }
+
     &:hover {
-      opacity: 0.8;
-    }
-
-    @include max-width($breakpoint-md) {
-      margin-bottom: 24px;
-      font-size: $font-size-sm;
+      opacity: 1;
+      color: #FFFFFF;
     }
   }
 
-  &__hero {
+  &__header-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+    // align-items: flex-end;
+
+    @include max-width($breakpoint-md) {
+      gap: $spacing-lg;
+    }
+
+    @include min-width($breakpoint-lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+  }
+
+  &__header-left {
+    @include flex-column;
+    gap: $spacing-lg;
+
+    @include max-width($breakpoint-md) {
+      gap: $spacing-md;
+    }
+  }
+
+  &__pills {
+    display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-
-    @include max-width($breakpoint-lg) {
-      gap: 40px;
-    }
+    min-height: 36px;
+    padding: 8px 24px;
+    gap: 16px;
+    border-radius: 100px;
+    background-color: #FFFFFF1A;
+    margin-bottom: $spacing-2xl;
 
     @include max-width($breakpoint-md) {
-      grid-template-columns: 1fr;
-      gap: 32px;
+      margin-bottom: $spacing-md;
     }
   }
 
-  &__hero-image {
-    background-color: $color-primary;
-    border-radius: $radius-xl;
-    aspect-ratio: 16/10;
-    min-height: 300px;
+  &__pill {
+    display: inline-block;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.95);
+  }
 
-    @include max-width($breakpoint-md) {
-      min-height: 200px;
+  &__pill-sep {
+    font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &__header-title {
+    font-family: "Inter", sans-serif;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin: 0;
+    color: $color-text-white;
+
+    @include min-width($breakpoint-md) {
+      font-size: $font-size-4xl;
+    }
+
+    @include min-width($breakpoint-lg) {
+      font-size: $font-size-5xl;
     }
   }
 
-  &__hero-content {
+  &__header-block {
+    margin: 0;
+  }
+
+  &__header-label {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.08em;
+    margin: 0 0 $spacing-xs;
+    color: $color-text-white;
+  }
+
+  &__header-text {
+    font-family: "Inter", sans-serif;
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+    line-height: 1.6;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__header-right {
+    @include flex-column;
+    gap: $spacing-xl;
+    align-items: stretch;
+  }
+
+  &__meta-list {
+    @include flex-column;
+    gap: 0;
+    width: 100%;
+    min-width: 200px;
+  }
+
+  &__meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    margin-bottom: $spacing-lg;
+
     @include max-width($breakpoint-md) {
-      text-align: center;
+      margin-bottom: $spacing-md;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
+  &__meta-label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.08em;
+    color: $color-text-white;
+  }
+
+  &__meta-value {
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    color: #FFFFFFCC;
+  }
+
+  &__logo-card {
+    background: $color-bg-white;
+    border-radius: $radius-2xl;
+    width: 100%;
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  &__logo-img {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+  }
+
+  &__logo-placeholder {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    text-align: center;
+  }
+
+  // Título y descripción (usados en estado "no encontrado")
   &__title {
     @include heading-1;
     margin-bottom: 24px;
@@ -97,28 +243,10 @@
     }
   }
 
-  &__tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-
-    @include max-width($breakpoint-md) {
-      justify-content: center;
-    }
-  }
-
-  &__tech {
-    background-color: $color-primary;
-    color: $color-text-white;
-    padding: 8px 16px;
-    border-radius: $radius-full;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-  }
-
   // Galería
   &__gallery {
     margin-bottom: 80px;
+    padding: 0;
 
     @include max-width($breakpoint-md) {
       margin-bottom: 60px;
@@ -137,52 +265,72 @@
 
   &__gallery-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    gap: 24px;
-    min-height: 400px;
-
-    @include max-width($breakpoint-lg) {
-      gap: 16px;
-    }
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0;
+    overflow: hidden;
 
     @include max-width($breakpoint-md) {
       grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      gap: 16px;
-      min-height: auto;
     }
   }
 
+  &__gallery--pro {
+    position: relative;
+    margin-top: $spacing-3xl;
+    padding: $spacing-xl $spacing-md;
+    padding-top: clamp(2rem, 6vw, 4rem);
+
+    @media (min-width: 768px) {
+      padding: $spacing-2xl $spacing-xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+
+    @media (min-width: 1024px) {
+      padding: $spacing-3xl $spacing-4xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+
+    .project-detail__layout-title {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
+      z-index: 0;
+      pointer-events: none;
+      margin-bottom: 0;
+    }
+  } 
+
+  &__layout-title {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(3rem, 12vw, 96px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-2xl;
+    background: linear-gradient(182.14deg, #C7CFFF 1.9%, #FFFFFF 98.29%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   &__gallery-image {
-    background-color: $color-primary;
-    border-radius: $radius-xl;
+    overflow: hidden;
 
     &--large {
-      grid-row: span 2;
-      aspect-ratio: 16/10;
-
-      @include max-width($breakpoint-md) {
-        grid-row: span 1;
-        aspect-ratio: 16/9;
-      }
+      grid-column: 1 / -1;
     }
+  }
 
-    &--small {
-      aspect-ratio: 16/10;
-
-      &:first-of-type {
-        @include max-width($breakpoint-md) {
-          aspect-ratio: 4/3;
-        }
-      }
-
-      &:last-of-type {
-        @include max-width($breakpoint-md) {
-          aspect-ratio: 3/2;
-        }
-      }
-    }
+  &__gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   // Contenido principal
@@ -374,16 +522,26 @@
 
   &__related-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 16px;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(320px, 1fr)
+    );
 
-    @include max-width($breakpoint-lg) {
+    @include min-width($breakpoint-lg) {
       gap: 24px;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(420px, 1fr)
+      );
     }
 
-    @include max-width($breakpoint-md) {
-      grid-template-columns: 1fr;
-      gap: 20px;
+    @include min-width($breakpoint-xl) {
+      gap: 24px;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(570px, 1fr)
+      );
     }
   }
 
@@ -420,6 +578,171 @@
     @include max-width($breakpoint-md) {
       padding: 16px;
       font-size: $font-size-base;
+    }
+  }
+
+  &__gallery-grid-pro {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__gallery-col {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: $radius-md;
+    }
+  }
+
+  // Web gallery section (2-column grid)
+  &__gallery--web {
+    position: relative;
+    margin-top: $spacing-3xl;
+    padding: $spacing-xl $spacing-md;
+    padding-top: clamp(2rem, 6vw, 4rem);
+
+    @media (min-width: 768px) {
+      padding: $spacing-2xl $spacing-xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+
+    @media (min-width: 1024px) {
+      padding: $spacing-3xl $spacing-4xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+  }
+
+  &__web-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__design-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 0;
+    pointer-events: none;
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(3rem, 12vw, 96px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+  }
+
+  // Mobile responsive gallery
+  &__gallery--mobile {
+    position: relative;
+    margin-top: $spacing-3xl;
+    padding: $spacing-xl $spacing-md;
+    padding-top: clamp(2rem, 6vw, 4rem);
+
+    @media (min-width: 768px) {
+      padding: $spacing-2xl $spacing-xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+
+    @media (min-width: 1024px) {
+      padding: $spacing-3xl $spacing-4xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+  }
+
+  &__responsive-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 0;
+    pointer-events: none;
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(3rem, 12vw, 96px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    background: linear-gradient(166.93deg, #6EF1B9 8.93%, #FFFFFF 68.75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__gallery-grid--mobile {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  // Design gallery section
+  &__gallery--design {
+    position: relative;
+    margin-top: $spacing-3xl;
+    padding: $spacing-xl $spacing-md;
+    padding-top: clamp(2rem, 6vw, 4rem);
+
+    @media (min-width: 768px) {
+      padding: $spacing-2xl $spacing-xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+
+    @media (min-width: 1024px) {
+      padding: $spacing-3xl $spacing-4xl;
+      padding-top: clamp(3rem, 7vw, 5rem);
+    }
+  }
+  
+  &__design-grid {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .project-detail__gallery-col:first-child {
+      flex: 1;
+    }
+
+    .project-detail__gallery-col:last-child {
+      max-width: 210px;
+      width: 100%;
     }
   }
 }
