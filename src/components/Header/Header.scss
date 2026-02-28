@@ -1,0 +1,167 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 24px;
+  left: 40px;
+  right: 40px;
+  z-index: $z-index-fixed;
+  background-color: #ffffff;
+  backdrop-filter: blur(4px);
+  box-shadow: 14px 7px 34px 0 rgba(0, 0, 0, 0.03);
+  border-radius: 100px;
+
+  @include max-width($breakpoint-lg) {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  &__container {
+    @include container;
+    @include flex-between;
+    height: 96px;
+    padding: 16px 48px;
+
+     @include max-width($breakpoint-lg) {
+      height: 62px;
+      padding: 16px 24px;
+    }
+  }
+
+  &__logo {
+    @include flex-center;
+    gap: 16px;
+    font-family: $font-family-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-normal;
+    color: $color-text-primary;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-text-primary;
+    }
+
+    &-icon {
+      color: $color-primary;
+      font-size: $font-size-xl;
+    }
+
+    @include mobile {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__logo-img {
+    width: 38px;
+    height: 39px;
+  }
+
+  &__nav {
+
+    @include max-width($breakpoint-md) {
+      display: none;
+    }
+
+    &-list {
+      @include flex-center;
+      gap: $spacing-xl;
+    }
+
+    &-item {
+      position: relative;
+    }
+
+    &-link {
+      @include small-text;
+      font-weight: $font-weight-medium;
+      color: $color-text-secondary;
+      padding: $spacing-sm 0;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-primary;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $color-primary;
+        transition: width $transition-fast;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__menu-btn {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+
+    @include max-width($breakpoint-md) {
+      display: flex;
+    }
+  }
+
+  &__menu-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__mobile-overlay {
+    display: none;
+
+    @include tablet {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: $z-index-fixed + 1;
+    }
+  }
+
+  &__mobile-menu {
+    @include tablet {
+      position: fixed;
+      top: 64px;
+      left: 16px;
+      right: 16px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 14px 7px 34px 0 rgba(0, 0, 0, 0.03);
+      padding: 16px 20px;
+    }
+  }
+
+  &__mobile-list {
+    @include flex-column;
+    gap: 12px;
+  }
+
+  &__mobile-link {
+    display: block;
+    padding: 12px 8px;
+    border-radius: 12px;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    text-decoration: none;
+    transition: background $transition-fast, color $transition-fast;
+
+    &:hover {
+      background: $color-bg-light;
+      color: $color-primary;
+    }
+  }
+}

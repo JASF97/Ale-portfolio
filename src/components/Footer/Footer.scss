@@ -1,0 +1,17 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  padding: $spacing-lg 0;
+
+  &__container {
+    @include container;
+    @include flex-between;
+    justify-content: center;
+  }
+
+  &__copyright {
+    font-size: $font-size-base;
+    color: #9AA0BB;
+  }
+}

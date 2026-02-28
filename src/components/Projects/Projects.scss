@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.projects {
+  @include section;
+  background: $color-bg-white;
+
+  &__container {
+    @include container;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(320px, 1fr)
+    );
+
+    @include min-width($breakpoint-lg) {
+      gap: 24px;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(420px, 1fr)
+      );
+    }
+
+    @include min-width($breakpoint-xl) {
+      gap: 24px;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(570px, 1fr)
+      );
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<svg width="305" height="30" viewBox="0 0 305 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Línea horizontal superior -->
+<line x1="8" y1="15" x2="297" y2="15" stroke="#947EFB" stroke-width="3"/>
+<!-- Línea vertical izquierda -->
+<line x1="8" y1="1" x2="8" y2="29" stroke="#947EFB" stroke-width="3"/>
+<!-- Línea vertical derecha -->
+<line x1="297" y1="1" x2="297" y2="29" stroke="#947EFB" stroke-width="3"/>
+<!-- Cuadrado esquina superior izquierda -->
+<rect x="1" y="8" width="14" height="14" fill="white" stroke="#947EFB" stroke-width="2"/>
+<!-- Cuadrado esquina superior derecha -->
+<rect x="290" y="8" width="14" height="14" fill="white" stroke="#947EFB" stroke-width="2"/>
+</svg>

@@ -1,0 +1,170 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  @include section;
+
+  &__container {
+    @include container;
+    
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__line {
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 32px;
+      background-color: $color-border;
+    }
+
+    &--left::after {
+      right: 0;
+    }
+
+    &--right::after {
+      left: 0;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-2xl;
+    color: $color-text-primary;
+    text-transform: capitalize;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+
+    @include min-width($breakpoint-md) {
+      color: #8E949A;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+    align-items: center;
+    padding: 24px;
+    background: $color-bg-light;
+    border-radius: 24px;
+
+    @include min-width($breakpoint-md) {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-3xl;
+    }
+  }
+
+  &__text {
+    padding: 16px;
+    border-radius: $radius-2xl;
+    color: $color-text-primary;
+
+    @include min-width($breakpoint-md) {
+      padding: 56px 0px 48px 48px;
+    }
+  }
+
+  &__greeting {
+    font-family: $font-family-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-md;
+    color: $color-text-primary;
+
+    @include min-width($breakpoint-md) {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    line-height: 26px;
+    font-weight: 300;
+
+    @include min-width($breakpoint-md) {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__text-bold {
+    font-weight: 500;
+  }
+
+  &__cta {
+    @include button-base;
+    background: $color-bg-white;
+    color: $color-primary;
+    padding: $spacing-md $spacing-xl;
+    border-radius: $radius-full;
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      background: $color-bg-light;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    @include max-width($breakpoint-md) {
+      order: -1;
+    }
+  }
+
+  &__image-bg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 70%;
+    background: linear-gradient(135deg, $color-primary-light 0%, $color-secondary-light 100%);
+    border-radius: $radius-2xl;
+    z-index: 0;
+  }
+
+  &__image {
+    position: relative;
+    z-index: 1;
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    border-radius: $radius-xl;
+
+    @include min-width($breakpoint-md) {
+      max-width: 400px;
+    }
+  }
+
+  &__image-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background: $color-primary;
+    color: $color-text-white;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    box-shadow: $shadow-md;
+  }
+}

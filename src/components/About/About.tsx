@@ -1,0 +1,44 @@
+import "./About.scss";
+
+export const About = () => {
+  return (
+    <section className="about" id="about">
+      <div className="about__container">
+        <div className="about__header">
+          <div className="about__line about__line--left"></div>
+          <span className="about__label">Sobre mí</span>
+          <div className="about__line about__line--right"></div>
+        </div>
+
+        <div className="about__content">
+          <div className="about__text">
+            <h2 className="about__greeting">Hola a todos 👋</h2>
+            <p className="about__description">
+              <span className="about__text-bold">
+                Con más de 3 años de experiencia en diseño UX/UI,
+              </span>{" "}
+              he trabajado en la creación de productos digitales en sectores
+              como finanzas, tecnología, entretenimiento, inmobiliaria y
+              e-commerce, siempre enfocada en{" "}
+              <span className="about__text-bold">
+                crear experiencias centradas en las personas
+              </span>{" "}
+              y funcionales, buscando que sean intuitivas, simples y atractivas
+              que le generen una emoción.
+            </p>
+          </div>
+
+          <div className="about__image-wrapper">
+            <img
+              src="./Ale.png"
+              alt="Alejandra Avendaño"
+              className="about__image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;

@@ -1,0 +1,149 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.project-card {
+  @include card;
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius-xl;
+    @include aspect-ratio(16, 10);
+
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+
+    .project-card:hover & {
+      transform: scale(1.05);
+    }
+
+    @include max-width($breakpoint-md) {
+      .project-card:hover & {
+        transform: none;
+      }
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    @include flex-center;
+    opacity: 0;
+    transition: opacity $transition-base;
+
+    .project-card:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #7390F9;
+    color: $color-bg-white;
+    width: 200px;
+    height: 200px;
+    padding: 0px 40px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-medium;
+    transform: scale(0.8);
+    transition: transform $transition-base;
+    cursor: pointer;
+    text-decoration: none;
+
+    .project-card:hover & {
+      transform: scale(1);
+    }
+  }
+
+  &__content {
+    padding: $spacing-md 0px;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-normal;
+  }
+
+  &__category {
+    @include small-text;
+    color: $color-primary;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__description {
+    @include body-text;
+    @include truncate(2);
+    font-size: $font-size-xl;
+  }
+
+  &__mobile-cta {
+    display: none;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    background: $color-bg-light;
+    color: $color-text-secondary;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    border-radius: $radius-full;
+  }
+
+  @include max-width($breakpoint-md) {
+    &__overlay {
+      display: none;
+    }
+
+    &__mobile-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      height: 45px;
+      border-radius: 24px;
+      border: 0.53px solid #0E0734;
+      padding: 12px;
+      gap: 8px;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: #0E0734;
+      background: transparent;
+      margin-top: $spacing-sm;
+      text-decoration: none;
+      transition: opacity $transition-base;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &__mobile-cta-arrow {
+      flex-shrink: 0;
+    }
+  }
+}
