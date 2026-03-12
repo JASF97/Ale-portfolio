@@ -2,22 +2,19 @@
 @use '../../styles/mixins' as *;
 
 .hero {
-  padding: 92px 16px 0px 16px;
-  
-  min-height: 100vh;
+  padding: 92px 16px 16px 16px;
   position: relative;
   overflow: hidden;
 
   @include desktop {
-   padding: 148px 40px 0px 40px;
+   padding: 148px 40px 40px 40px;
   }
 
   &__container {
     @include container;
     @include flex-between;
-    gap: $spacing-2xl;
-    padding: 64px;
-    min-height: calc(80vh - 72px);
+    gap: $spacing-lg;
+    padding: 44px 64px;
     align-items: center;
     position: relative;
     overflow: hidden;
@@ -28,10 +25,18 @@
 
     border-radius: 24px;
 
+    @include max-width($breakpoint-xl) {
+      padding: 64px 24px;
+    }
+
     @include max-width($breakpoint-lg) {
       flex-direction: column;
       text-align: center;
       padding: 32px 16px;
+      gap: 40px;
+    }
+
+    @include max-width($breakpoint-lg) {
       background-image: none;
     }
   }
@@ -132,11 +137,29 @@
     }
   }
 
+  &__butterfly {
+    position: absolute;
+    z-index: 5;
+    top: 60%;
+    left: -10%;
+
+    @include max-width($breakpoint-lg) {
+      width: 70px;
+      height: 76px;
+      top: -5%;
+      left: 50%;
+    }
+  }
+
   &__content {
     position: relative;
     flex: 0 0 45%;
     max-width: 500px;
     z-index: 2;
+
+    @include max-width($breakpoint-xl) {
+      max-width: 380px;
+    }
 
     @include max-width($breakpoint-md) {
       flex: 1;
@@ -173,13 +196,12 @@
     margin-bottom: $spacing-lg;
     font-size: 88px;
 
-    @include max-width($breakpoint-md) {
+    @include max-width($breakpoint-xl) {
       font-size: 56px;
     }
 
     &-line {
       display: block;
-      
       
       &:first-child {
         color: #041829;
@@ -188,9 +210,39 @@
     }
 
     &-line--name {
-      position: absolute;
-      background-repeat: no-repeat;
-      background-size: cover;
+      position: relative;
+      display: inline-block;
+      padding: 6px 14px;
+      
+      @include desktop {
+        padding: 8px 18px;
+      }
+      
+      // Main border
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 3px solid #947EFB;
+        pointer-events: none;
+      }
+      
+      // Corner handles
+      &::after {
+        content: '';
+        position: absolute;
+        inset: -7px;
+        pointer-events: none;
+        background:
+          // Top-left corner
+          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 0 0,
+          // Top-right corner
+          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 100% 0,
+          // Bottom-left corner
+          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 0 100%,
+          // Bottom-right corner
+          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 100% 100%;
+      }
     }
   }
 
@@ -223,131 +275,127 @@
   &__images {
     position: relative;
     width: 100%;
+    max-width: 492px;
     height: 450px;
     z-index: 1;
-    background: #f54be333;
+
+    @include max-width($breakpoint-sm) {
+      max-width: 308px;
+      height: 280px;
+    }
   }
 
   &__float-img {
-    transition: transform $transition-base;
+    position: absolute;
+    object-fit: contain;
+    // transition: transform $transition-base;
 
     &:hover {
       transform: scale(1.02);
     }
 
-    // Customers chart - top left
+    // Customers - top left
     &--customers {
-      z-index: 3;
-      animation: float 6s ease-in-out infinite;
-
+      top: -8%;
+      left: 0%;
       width: 100%;
-      height: 100%;
+      max-width: 240px;
+      z-index: 3;
+      // animation: float-subtle 6s ease-in-out infinite;
+
+      @include max-width($breakpoint-lg) {
+        top: 0;
+      }
+
+      @include max-width($breakpoint-sm) {
+        left: 0%;
+        max-width: 150px;
+      }
     }
 
-    // Plan selector - center left
+    // Plan - center left
     &--plan {
-      width: 220px;
-      top: 120px;
-      left: 20px;
+      top: 20%;
+      left: 0%;
+      width: 100%;
+      max-width: 240px;
       z-index: 2;
-      animation: float 7s ease-in-out infinite 0.5s;
+      // animation: float-subtle 7s ease-in-out infinite 0.5s;
 
-      @include min-width($breakpoint-lg) {
-        width: 260px;
-        top: 140px;
+      @include max-width($breakpoint-lg) {
+        top: 28%;
+        left: 6%;
       }
 
-      @include max-width($breakpoint-md) {
-        width: 180px;
-        top: 100px;
-        left: 0;
-      }
-
-      @include mobile {
-        width: 60%;
-        top: auto;
-        bottom: 180px;
-        left: 0;
+      @include max-width($breakpoint-sm) {
+        top: 28%;
+        left: 0%;
+        max-width: 150px;
       }
     }
 
-    // Labels modal - top right
-    &--labels {
-      width: 200px;
-      top: 0;
-      right: 0;
-      z-index: 4;
-      animation: float 5s ease-in-out infinite 1s;
-
-      @include min-width($breakpoint-lg) {
-        width: 240px;
-      }
-
-      @include max-width($breakpoint-md) {
-        width: 160px;
-        right: 5%;
-      }
-
-      @include mobile {
-        width: 55%;
-        right: 0;
-        top: 60px;
-      }
-    }
-
-    // Cursor
+    // Cursor - center
     &--cursor {
-      width: 30px;
-      box-shadow: none;
-      z-index: 10;
+      top: 56%;
+      left: 58%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 150px;
+      z-index: 5;
+      // animation: float-subtle-centered 5s ease-in-out infinite 1s;
 
-      @include mobile {
-        width: 24px;
+      &:hover {
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+
+      @include max-width($breakpoint-lg) {
+        top: 64%;
+      }
+
+      @include max-width($breakpoint-sm) {
+        left: 58%;
+        max-width: 100px;
       }
     }
 
-    // Name badge
-    &--name {
-      width: 100px;
-      box-shadow: none;
-      z-index: 9;
+    // Labels - top right
+    &--labels {
+      top: 4%;
+      right: 0%;
+      width: 100%;
+      max-width: 237px;
+      z-index: 4;
+      // animation: float-subtle 6s ease-in-out infinite 1.2s;
 
-      @include mobile {
-        width: 80px;
+      @include max-width($breakpoint-lg) {
+        top: 12%;
+      }
+
+      @include max-width($breakpoint-sm) {
+        top: 10%;
+        right: 0%;
+        max-width: 150px;
       }
     }
-  }
 
-  &__cursor-wrapper {
-    position: absolute;
-    top: 130px;
-    right: 40px;
-    z-index: 10;
-    animation: float 4s ease-in-out infinite 1.5s;
+    // Members - bottom right
+    &--members {
+      bottom: -9%;
+      right: 0%;
+      width: 100%;
+      max-width: 237px;
+      z-index: 3;
+      // animation: float-subtle 7s ease-in-out infinite 0.8s;
 
-    @include min-width($breakpoint-lg) {
-      top: 150px;
-      right: 60px;
-    }
+      @include max-width($breakpoint-lg) {
+        bottom: -16%;
+      }
 
-    @include max-width($breakpoint-md) {
-      top: 110px;
-      right: 20px;
-    }
-
-    @include mobile {
-      top: 180px;
-      right: 10%;
-    }
-
-    .hero__float-img--cursor {
-      position: relative;
-    }
-
-    .hero__float-img--name {
-      position: absolute;
-      top: 20px;
-      left: 15px;
+      @include max-width($breakpoint-sm) {
+        bottom: -16%;
+        right: 0%;
+        max-width: 150px;
+      }
     }
   }
 }
@@ -358,5 +406,23 @@
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes float-subtle-centered {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-4px);
   }
 }

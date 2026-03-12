@@ -3,6 +3,12 @@ import "./Hero.scss";
 import starIcon from "../../assets/star.svg";
 import gridsImg from "../../assets/grids.png";
 import gridsImgDesktop from "../../assets/grids-2.png";
+import butterfly from "../../assets/butterfly.svg";
+import customersHero from "../../assets/customers-hero.svg";
+import planHero from "../../assets/plan-hero.svg";
+import cursorAle from "../../assets/cursor-ale.svg";
+import labelsHero from "../../assets/labels-hero.svg";
+import membersHero from "../../assets/members-hero.svg";
 
 export const Hero = () => {
   return (
@@ -22,20 +28,13 @@ export const Hero = () => {
           aria-hidden="true"
         />
 
+
         <div className="hero__content">
           <img className="hero__star" src={starIcon} alt="star" />
           <p className="hero__greeting">Hola! 👋 soy diseñadora UX/UI.</p>
 
           <h1 className="hero__title">
-            <div style={{ position: "relative" }}>
-              {/* <img
-                className="hero__title-line--name"
-                src="/selection-name.svg"
-                alt=""
-              /> */}
-              <span className="hero__title-line">Alejandra</span>
-            </div>
-
+            <span className="hero__title-line hero__title-line--name">Alejandra</span>
             <span className="hero__title-line">Avendaño</span>
           </h1>
 
@@ -45,11 +44,32 @@ export const Hero = () => {
         </div>
 
         <div className="hero__images">
-          {/* <img
-            src="/plan-hero.svg"
+        <img className="hero__butterfly" src={butterfly} alt="butterfly" aria-hidden="true" />
+          <img
+            src={customersHero}
             alt="Clientes totales"
             className="hero__float-img hero__float-img--customers"
-          /> */}
+          />
+          <img
+            src={planHero}
+            alt="Seleccionar plan"
+            className="hero__float-img hero__float-img--plan"
+          />
+          <img
+            src={cursorAle}
+            alt="Cursor"
+            className="hero__float-img hero__float-img--cursor"
+          />
+          <img
+            src={labelsHero}
+            alt="Etiquetas del proyecto"
+            className="hero__float-img hero__float-img--labels"
+          />
+          <img
+            src={membersHero}
+            alt="Miembros del equipo"
+            className="hero__float-img hero__float-img--members"
+          />
         </div>
       </div>
     </section>

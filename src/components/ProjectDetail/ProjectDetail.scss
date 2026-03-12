@@ -4,6 +4,7 @@
 .project-detail {
   min-height: 100vh;
   background-color: $color-bg-light;
+  overflow: hidden;
 
   &__container {
     @include container;
@@ -12,10 +13,10 @@
 
   // Header del proyecto (background distinto por proyecto)
   &__header {
+    position: relative;
+    overflow: hidden;
     color: $color-text-white;
-    min-height: 400px;
-
-    
+    min-height: 100vh;
 
     @include min-width($breakpoint-md) {
       padding: $spacing-3xl $spacing-xl $spacing-4xl;
@@ -31,7 +32,78 @@
   }
 
   &__header-inner {
+    position: relative;
+    z-index: 1;
     margin: 0 auto;
+  }
+
+  &__header-gradient {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+
+    &--bimbo-1 {
+      width: 677px;
+      height: 629.61px;
+      top: 25%;
+      left: 70%;
+      opacity: 0.3;
+      background: #1CE3CC;
+      filter: blur(300px);
+    }
+
+    &--bimbo-2 {
+      width: 371px;
+      height: 371px;
+      top: -20%;
+      left: -8%;
+      opacity: 0.5;
+      background: #47EFB4;
+      filter: blur(150px);
+    }
+
+    &--playerprops-1 {
+      width: 371px;
+      height: 371px;
+      top: -15%;
+      left: -10%;
+      opacity: 0.5;
+      background: #47EFB4;
+      filter: blur(150px);
+    }
+
+    &--playerprops-2 {
+      width: 677px;
+      height: 629.61px;
+      top: 30%;
+      left: 72%;
+      opacity: 0.6;
+      background: #1CE3CC;
+      filter: blur(300px);
+    }
+
+    &--adelantto-1 {
+      width: 677px;
+      height: 629.61px;
+      top: 32%;
+      left: 56%;
+      transform: translate(-50%, -50%);
+      opacity: 0.8;
+      background: conic-gradient(from 180deg at 50% 57.44%, #FFFFFF -2.47deg, #0E3775 1.81deg, #5260F9 76.1deg, rgba(24, 19, 26, 0.131006) 121.11deg, rgba(7, 22, 18, 0) 300.72deg, rgba(0, 0, 0, 0) 357.29deg, #FFFFFF 357.53deg, #0E3775 361.81deg);
+      filter: blur(150px);
+    }
+  }
+
+  &__header-distortion {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 6%;
   }
 
   &__back {
@@ -98,6 +170,7 @@
 
     @include max-width($breakpoint-md) {
       margin-bottom: $spacing-md;
+      gap: 8px;
     }
   }
 
@@ -107,6 +180,10 @@
     font-weight: $font-weight-medium;
     letter-spacing: 0.05em;
     color: rgba(255, 255, 255, 0.95);
+
+    @include max-width($breakpoint-md) {
+      font-size: $font-size-sm;
+    }
   }
 
   &__pill-sep {
@@ -115,7 +192,7 @@
   }
 
   &__header-title {
-    font-family: "Inter", sans-serif;
+    font-family: "Inter";
     font-size: $font-size-3xl;
     font-weight: $font-weight-bold;
     letter-spacing: 0.02em;
@@ -137,7 +214,7 @@
   }
 
   &__header-label {
-    font-family: "Inter", sans-serif;
+    font-family: "Inter";
     font-size: 16px;
     font-weight: $font-weight-bold;
     letter-spacing: 0.08em;
@@ -146,7 +223,7 @@
   }
 
   &__header-text {
-    font-family: "Inter", sans-serif;
+    font-family: "Inter";
     font-size: $font-size-base;
     font-weight: $font-weight-light;
     line-height: 1.6;
@@ -186,6 +263,7 @@
   }
 
   &__meta-label {
+    font-family: "Inter";
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
     letter-spacing: 0.08em;
@@ -245,12 +323,57 @@
 
   // Galería
   &__gallery {
-    margin-bottom: 80px;
     padding: 0;
 
-    @include max-width($breakpoint-md) {
-      margin-bottom: 60px;
+    &--playerprops {
+      position: relative;
+      background: #0a1e25;
     }
+  }
+
+  // Balones decorativos (solo PlayerProps)
+  &__sport-ball {
+    position: absolute;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+
+    &--soccer {
+      top: -8%;
+      left: -42px;
+      width: clamp(80px, 15vw, 180px);
+      max-height: 158px;
+
+      @include max-width($breakpoint-md) {
+        width: clamp(80px, 9vw, 180px);
+        top: -5%;
+      }
+    }
+
+    &--football {
+      right: 32px;
+      transform: translateY(-50%);
+      width: clamp(70px, 12vw, 150px);
+      max-height: 132px;
+      bottom: 0%;
+    }
+
+    &--basket {
+      top: 0%;
+      left: -42px;
+      width: clamp(80px, 15vw, 180px);
+      max-height: 144px;
+
+      @include max-width($breakpoint-md) {
+        width: clamp(45px, 9vw, 180px);
+        top: -1%;
+        left: -8px;
+      }
+    }
+  }
+
+  &__gallery--playerprops-web {
+    position: relative;
   }
 
   &__section-title {
@@ -520,7 +643,46 @@
     }
   }
 
+  &__projects-gradient {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+
+    &--1 {
+      width: 369px;
+      height: 293px;
+      top: 10%;
+      left: -152px;
+      opacity: 0.7;
+      background: #F9D2FF;
+      filter: blur(100px);
+    }
+
+    &--2 {
+      width: 607px;
+      height: 607px;
+      top: 38%;
+      right: -10%;
+      opacity: 0.3;
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        #F6C882 0%,
+        rgba(217, 217, 217, 0) 100%
+      );
+
+      @include max-width($breakpoint-lg) {
+        top: 90%;
+        right: -16%;
+        width: 307px;
+        height: 307px;
+      }
+    }
+  }
+
   &__related-grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: 16px;
     grid-template-columns: repeat(
@@ -530,18 +692,6 @@
 
     @include min-width($breakpoint-lg) {
       gap: 24px;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(420px, 1fr)
-      );
-    }
-
-    @include min-width($breakpoint-xl) {
-      gap: 24px;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(570px, 1fr)
-      );
     }
   }
 
@@ -639,7 +789,7 @@
 
   &__design-title {
     position: absolute;
-    top: 0;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -652,6 +802,11 @@
     text-transform: uppercase;
     line-height: 100%;
     letter-spacing: 0.05em;
+
+
+    @media (min-width: 1080px) {
+      top: 18px;
+    }
   }
 
   // Mobile responsive gallery
@@ -708,6 +863,7 @@
   // Design gallery section
   &__gallery--design {
     position: relative;
+    max-width: 1440px;
     margin-top: $spacing-3xl;
     padding: $spacing-xl $spacing-md;
     padding-top: clamp(2rem, 6vw, 4rem);
@@ -744,5 +900,11 @@
       max-width: 210px;
       width: 100%;
     }
+  }
+
+  // Sección proyectos relacionados: contenedor para los gradientes decorativos
+  .projects {
+    position: relative;
+    overflow: visible;
   }
 }

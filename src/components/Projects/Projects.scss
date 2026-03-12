@@ -3,10 +3,22 @@
 
 .projects {
   @include section;
-  background: $color-bg-white;
 
   &__container {
     @include container; 
+  }
+
+  &__header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    margin: $spacing-2xl 0px;
+
+    @include max-width($breakpoint-md) {
+      margin: 0px 0px $spacing-2xl 0px;
+    }
   }
 
   &__grid {
@@ -21,15 +33,7 @@
       gap: 24px;
       grid-template-columns: repeat(
         auto-fit,
-        minmax(420px, 1fr)
-      );
-    }
-
-    @include min-width($breakpoint-xl) {
-      gap: 24px;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(570px, 1fr)
+        minmax(380px, 1fr)
       );
     }
   }

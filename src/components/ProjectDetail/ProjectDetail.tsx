@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 import { projects } from "../Projects/projectsData";
 import ProjectCard from "../ProjectCard";
-// import ProjectImageSection from "./ProjectImageSection";
 
 import bimbo1 from "../../assets/bimbo-1.png";
 import bimbo2 from "../../assets/bimbo-2.png";
@@ -17,6 +16,11 @@ import adelantto3 from "../../assets/adelantto-3.png";
 import michi1 from "../../assets/michi-1.png";
 import michi2 from "../../assets/michi-2.png";
 import michi3 from "../../assets/michi-3.png";
+import distorsionImg from "../../assets/distortion.png";
+import soccerImg from "../../assets/soccer.png";
+import basketImg from "../../assets/basket.png";
+import footballImg from "../../assets/football.png";
+import { Contact } from "../Contact";
 
 export const ProjectDetail = () => {
   const { slug } = useParams();
@@ -41,17 +45,45 @@ export const ProjectDetail = () => {
   }
 
   return (
-    <main className="project-detail">
+    <main className="project-detail"> 
       <div className="project-detail__container">
         {/* Header del proyecto */}
         <section
-          className="project-detail__header"
+          className={`project-detail__header project-detail__header--${project.slug}`}
           style={
             project.headerBackground
               ? { background: project.headerBackground }
               : undefined
           }
         >
+          {/* Gradientes e imágenes por proyecto */}
+          {project.slug === "bimbo" && (
+            <>
+              <div className="project-detail__header-gradient project-detail__header-gradient--bimbo-1" aria-hidden />
+              <div className="project-detail__header-gradient project-detail__header-gradient--bimbo-2" aria-hidden />
+            </>
+          )}
+          
+          {project.slug === "playerprops" && (
+            <>
+              <div className="project-detail__header-gradient project-detail__header-gradient--playerprops-1" aria-hidden />
+              <div className="project-detail__header-gradient project-detail__header-gradient--playerprops-2" aria-hidden />
+            </>
+          )}
+
+          {project.slug === "michiconf" && (
+            <img
+              src={distorsionImg}
+              alt=""
+              className="project-detail__header-distortion"
+              aria-hidden
+            />
+          )}
+          
+          {project.slug === "adelantto-cash" && (
+            <div className="project-detail__header-gradient project-detail__header-gradient--adelantto-1" aria-hidden />
+          )}
+
           <div className="project-detail__header-inner">
             <Link to="/" className="project-detail__back">
               ← Volver al inicio
@@ -145,7 +177,13 @@ export const ProjectDetail = () => {
         </section>
 
         {/* Galería de imágenes (proyecto-1 = 100%, proyecto-2 y proyecto-3 = pequeñas) */}
-        <section className="project-detail__gallery">
+        <section className={`project-detail__gallery ${project.slug === "playerprops" ? "project-detail__gallery--playerprops" : ""}`}>
+          {project.slug === "playerprops" && (
+            <>
+              <img src={soccerImg} alt="" className="project-detail__sport-ball project-detail__sport-ball--soccer" aria-hidden />
+              <img src={footballImg} alt="" className="project-detail__sport-ball project-detail__sport-ball--football" aria-hidden />
+            </>
+          )}
           <div className="project-detail__gallery-grid">
             {(() => {
               const galleryBySlug: Record<
@@ -282,7 +320,10 @@ export const ProjectDetail = () => {
 
         {/* Web gallery (2-column grid) */}
         {project.galleryWeb && (
-          <section className="project-detail__gallery project-detail__gallery--web">
+          <section className={`project-detail__gallery project-detail__gallery--web ${project.slug === "playerprops" ? "project-detail__gallery--playerprops-web" : ""}`}>
+            {project.slug === "playerprops" && (
+              <img src={basketImg} alt="" className="project-detail__sport-ball project-detail__sport-ball--basket" aria-hidden />
+            )}
             <h2
               className="project-detail__design-title"
               style={{
@@ -305,8 +346,23 @@ export const ProjectDetail = () => {
         )}
 
         {/* Proyectos relacionados */}
-        <section className="project-detail__related">
-          <h2 className="project-detail__section-title">Otros proyectos</h2>
+        <section className="projects">
+          <div
+            className="project-detail__projects-gradient project-detail__projects-gradient--1"
+            aria-hidden
+          />
+          <div
+            className="project-detail__projects-gradient project-detail__projects-gradient--2"
+            aria-hidden
+          />
+          
+          <div className="about__header">
+            <div className="about__line about__line--left"></div>
+            <span className="about__label">Mi Trabajo</span>
+            <div className="about__line about__line--right"></div>
+          </div>
+
+          
           <div className="project-detail__related-grid">
             {projects
               .filter((p) => p.slug !== slug)
@@ -323,6 +379,8 @@ export const ProjectDetail = () => {
               ))}
           </div>
         </section>
+
+        <Contact />
       </div>
     </main>
   );

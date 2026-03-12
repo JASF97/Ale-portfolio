@@ -1,9 +1,11 @@
 import "./About.scss";
+import butterfly from "../../assets/butterfly.svg";
 
 export const About = () => {
   return (
-    <section className="about" id="about">
+    <section className="about" id="about"> 
       <div className="about__container">
+
         <div className="about__header">
           <div className="about__line about__line--left"></div>
           <span className="about__label">Sobre mí</span>
@@ -11,6 +13,7 @@ export const About = () => {
         </div>
 
         <div className="about__content">
+
           <div className="about__text">
             <h2 className="about__greeting">Hola a todos 👋</h2>
             <p className="about__description">
@@ -30,11 +33,17 @@ export const About = () => {
 
           <div className="about__image-wrapper">
             <img
-              src="../src/assets/Ale.png"
+              src="../src/assets/alejandra-img.png"
               alt="Alejandra Avendaño"
               className="about__image"
             />
           </div>
+
+          <div className="about__gradient about__gradient--1" aria-hidden="true" />
+          <div className="about__gradient about__gradient--2" aria-hidden="true" />
+          <div className="about__gradient about__gradient--3" aria-hidden="true" />
+
+          <img className="about__butterfly" src={butterfly} alt="butterfly" aria-hidden="true" />
         </div>
       </div>
     </section>

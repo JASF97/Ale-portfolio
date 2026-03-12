@@ -208,7 +208,7 @@
 
   @include min-width($breakpoint-md) {
     padding: 0px;
-    background-color: $color-bg-white;
+    background-color: transparent;
   }
 }
 
@@ -224,7 +224,7 @@
   padding: $spacing-3xl 16px;
 
   @include min-width($breakpoint-md) {
-    padding: $spacing-4xl 40px;
+    padding: $spacing-3xl 56px;
   }
 }
 

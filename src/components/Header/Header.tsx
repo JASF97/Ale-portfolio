@@ -38,6 +38,17 @@ export const Header = ({
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const BREAKPOINT_MD = 860;
+
+    const onResize = () => {
+      if (window.innerWidth >= BREAKPOINT_MD) setIsMenuOpen(false);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <header className="header">
       <div className="header__container">

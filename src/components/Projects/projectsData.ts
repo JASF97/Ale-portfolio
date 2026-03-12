@@ -205,8 +205,7 @@ export const projects: Project[] = [
     type: "UX/UI Design",
     software: "Figma",
     logoSrc: logoMichiConf,
-    headerBackground:
-      "linear-gradient(0deg, #5C62D6, #5C62D6), radial-gradient(47.6% 85.11% at 52.4% 50.15%, rgba(86, 0, 115, 0.6) 0%, rgba(3, 4, 6, 0.6) 100%)",
+    headerBackground: "linear-gradient(0deg, rgb(92 98 214 / 36%), rgb(92 98 214 / 40%)), radial-gradient(47.6% 85.11% at 52.4% 50.15%, rgba(86, 0, 115, 0.8) 0%, rgba(3, 4, 6, 0.9) 100%), linear-gradient(0deg, rgb(24, 25, 69), rgb(24, 25, 69))",
     layoutTitle: "DISEÑO",
     galleryDesign: {
       title: "DISEÑO",

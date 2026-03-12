@@ -19,12 +19,11 @@ export const ProjectCard = ({
   tags = [],
 }: ProjectCardProps) => {
   return (
-    <article className="project-card">
+    <Link to={`/project/${slug}`} className="project-card">
       <div className="project-card__image-wrapper">
         <img src={imageSrc} alt={imageAlt} className="project-card__image" />
         <div className="project-card__overlay">
-          <Link to={`/project/${slug}`} className="project-card__view">
-            {" "}
+          <span className="project-card__view">
             <svg
               width="48"
               height="48"
@@ -39,9 +38,9 @@ export const ProjectCard = ({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>{" "}
+            </svg>
             Ver proyecto
-          </Link>
+          </span>
         </div>
       </div>
 
@@ -51,7 +50,7 @@ export const ProjectCard = ({
           <p className="project-card__description">{description}</p>
         )}
 
-        <Link to={`/project/${slug}`} className="project-card__mobile-cta">
+        <span className="project-card__mobile-cta">
           Ver proyecto
           <svg
             width="24"
@@ -68,7 +67,7 @@ export const ProjectCard = ({
               strokeLinejoin="round"
             />
           </svg>
-        </Link>
+        </span>
 
         {tags.length > 0 && (
           <div className="project-card__tags">
@@ -80,7 +79,7 @@ export const ProjectCard = ({
           </div>
         )}
       </div>
-    </article>
+    </Link>
   );
 };
 

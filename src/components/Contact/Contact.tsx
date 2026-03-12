@@ -2,6 +2,8 @@ import "./Contact.scss";
 import miscIcon from "../../assets/Misc.svg";
 import linkedInIcon from "../../assets/LinkedIn.svg";
 import behanceIcon from "../../assets/Behance.svg";
+import frameContact from "../../assets/frame-contact.png";
+import { Footer } from "../Footer";
 
 export const Contact = () => {
   return (
@@ -70,7 +72,9 @@ export const Contact = () => {
         </div>
       </div>
 
-      {/* <img className="contact__frame" src="/frame-contact.png" alt="" /> */}
+      <img className="contact__frame" src={frameContact} alt="" />
+
+      <Footer />
     </section>
   );
 };
