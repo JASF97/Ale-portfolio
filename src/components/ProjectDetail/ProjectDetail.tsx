@@ -21,6 +21,7 @@ import soccerImg from "../../assets/soccer.png";
 import basketImg from "../../assets/basket.png";
 import footballImg from "../../assets/football.png";
 import { Contact } from "../Contact";
+import AnimatedSection from "../AnimatedSection";
 
 export const ProjectDetail = () => {
   const { slug } = useParams();
@@ -45,7 +46,7 @@ export const ProjectDetail = () => {
   }
 
   return (
-    <main className="project-detail"> 
+    <main className="project-detail">
       <div className="project-detail__container">
         {/* Header del proyecto */}
         <section
@@ -59,15 +60,27 @@ export const ProjectDetail = () => {
           {/* Gradientes e imágenes por proyecto */}
           {project.slug === "bimbo" && (
             <>
-              <div className="project-detail__header-gradient project-detail__header-gradient--bimbo-1" aria-hidden />
-              <div className="project-detail__header-gradient project-detail__header-gradient--bimbo-2" aria-hidden />
+              <div
+                className="project-detail__header-gradient project-detail__header-gradient--bimbo-1"
+                aria-hidden
+              />
+              <div
+                className="project-detail__header-gradient project-detail__header-gradient--bimbo-2"
+                aria-hidden
+              />
             </>
           )}
-          
+
           {project.slug === "playerprops" && (
             <>
-              <div className="project-detail__header-gradient project-detail__header-gradient--playerprops-1" aria-hidden />
-              <div className="project-detail__header-gradient project-detail__header-gradient--playerprops-2" aria-hidden />
+              <div
+                className="project-detail__header-gradient project-detail__header-gradient--playerprops-1"
+                aria-hidden
+              />
+              <div
+                className="project-detail__header-gradient project-detail__header-gradient--playerprops-2"
+                aria-hidden
+              />
             </>
           )}
 
@@ -79,9 +92,12 @@ export const ProjectDetail = () => {
               aria-hidden
             />
           )}
-          
+
           {project.slug === "adelantto-cash" && (
-            <div className="project-detail__header-gradient project-detail__header-gradient--adelantto-1" aria-hidden />
+            <div
+              className="project-detail__header-gradient project-detail__header-gradient--adelantto-1"
+              aria-hidden
+            />
           )}
 
           <div className="project-detail__header-inner">
@@ -177,11 +193,23 @@ export const ProjectDetail = () => {
         </section>
 
         {/* Galería de imágenes (proyecto-1 = 100%, proyecto-2 y proyecto-3 = pequeñas) */}
-        <section className={`project-detail__gallery ${project.slug === "playerprops" ? "project-detail__gallery--playerprops" : ""}`}>
+        <section
+          className={`project-detail__gallery ${project.slug === "playerprops" ? "project-detail__gallery--playerprops" : ""}`}
+        >
           {project.slug === "playerprops" && (
             <>
-              <img src={soccerImg} alt="" className="project-detail__sport-ball project-detail__sport-ball--soccer" aria-hidden />
-              <img src={footballImg} alt="" className="project-detail__sport-ball project-detail__sport-ball--football" aria-hidden />
+              <img
+                src={soccerImg}
+                alt=""
+                className="project-detail__sport-ball project-detail__sport-ball--soccer"
+                aria-hidden
+              />
+              <img
+                src={footballImg}
+                alt=""
+                className="project-detail__sport-ball project-detail__sport-ball--football"
+                aria-hidden
+              />
             </>
           )}
           <div className="project-detail__gallery-grid">
@@ -320,9 +348,16 @@ export const ProjectDetail = () => {
 
         {/* Web gallery (2-column grid) */}
         {project.galleryWeb && (
-          <section className={`project-detail__gallery project-detail__gallery--web ${project.slug === "playerprops" ? "project-detail__gallery--playerprops-web" : ""}`}>
+          <section
+            className={`project-detail__gallery project-detail__gallery--web ${project.slug === "playerprops" ? "project-detail__gallery--playerprops-web" : ""}`}
+          >
             {project.slug === "playerprops" && (
-              <img src={basketImg} alt="" className="project-detail__sport-ball project-detail__sport-ball--basket" aria-hidden />
+              <img
+                src={basketImg}
+                alt=""
+                className="project-detail__sport-ball project-detail__sport-ball--basket"
+                aria-hidden
+              />
             )}
             <h2
               className="project-detail__design-title"
@@ -355,27 +390,28 @@ export const ProjectDetail = () => {
             className="project-detail__projects-gradient project-detail__projects-gradient--2"
             aria-hidden
           />
-          
+
           <div className="about__header">
             <div className="about__line about__line--left"></div>
             <span className="about__label">Mi Trabajo</span>
             <div className="about__line about__line--right"></div>
           </div>
 
-          
           <div className="project-detail__related-grid">
             {projects
               .filter((p) => p.slug !== slug)
-              .map((relatedProject) => (
-                <ProjectCard
-                  key={relatedProject.id}
-                  slug={relatedProject.slug}
-                  title={relatedProject.title}
-                  description={relatedProject.description}
-                  imageSrc={relatedProject.imageSrc}
-                  imageAlt={relatedProject.imageAlt ?? relatedProject.title}
-                  tags={relatedProject.tags}
-                />
+              .map((relatedProject, index) => (
+                <AnimatedSection key={relatedProject.id} delay={index * 100}>
+                  <ProjectCard
+                    key={relatedProject.id}
+                    slug={relatedProject.slug}
+                    title={relatedProject.title}
+                    description={relatedProject.description}
+                    imageSrc={relatedProject.imageSrc}
+                    imageAlt={relatedProject.imageAlt ?? relatedProject.title}
+                    tags={relatedProject.tags}
+                  />
+                </AnimatedSection>
               ))}
           </div>
         </section>
