@@ -36,7 +36,7 @@ export const Contact = () => {
                 <div className="contact__social-red">
                   <img src={linkedInIcon} alt="" />
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/alejandragao/"
                     className="contact__social-link"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -48,7 +48,7 @@ export const Contact = () => {
                 <div className="contact__social-red">
                   <img src={behanceIcon} alt="" />
                   <a
-                    href="https://behance.net"
+                    href="https://www.behance.net/alejandragao"
                     className="contact__social-link"
                     target="_blank"
                     rel="noopener noreferrer"

@@ -1,6 +1,7 @@
 import "./About.scss";
 import butterfly from "../../assets/butterfly.svg";
 import AnimatedSection from "../AnimatedSection";
+import alejandraImage from "../../assets/alejandra-img.png";
 
 export const About = () => {
   return (
@@ -38,7 +39,7 @@ export const About = () => {
           <AnimatedSection direction="left" delay={200}>
             <div className="about__image-wrapper">
               <img
-                src="../src/assets/alejandra-img.png"
+                src={alejandraImage}
                 alt="Alejandra Avendaño"
                 className="about__image"
               />
