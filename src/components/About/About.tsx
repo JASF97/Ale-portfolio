@@ -22,7 +22,7 @@ export const About = () => {
             <AnimatedSection direction="right" delay={100}>
               <p className="about__description">
                 <span className="about__text-bold">
-                  Con más de 3 años de experiencia en diseño UX/UI,
+                  Con más de 4 años de experiencia en diseño UX/UI,
                 </span>{" "}
                 he trabajado en la creación de productos digitales en sectores
                 como finanzas, tecnología, entretenimiento, inmobiliaria y

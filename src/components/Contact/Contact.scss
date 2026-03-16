@@ -7,6 +7,8 @@
 
   &__container {
     @include container;
+    position: relative;
+     z-index: 5;
   }
 
   &__header {
@@ -77,6 +79,10 @@
     @include min-width($breakpoint-md) {
       grid-template-columns: 1fr 1fr;
       gap: $spacing-3xl;
+      padding: 72px 56px;
+    }
+
+    @include min-width($breakpoint-xl) {
       padding: 72px 112px;
     }
   }

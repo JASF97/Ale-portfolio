@@ -69,9 +69,6 @@ export const Contact = () => {
               >
                 alejandra18gao@gmail.com
               </a>
-              <a href="tel:+584140917303" className="contact__right-link">
-                +584140917303
-              </a>
             </div>
           </AnimatedSection>
         </div>
