@@ -74,7 +74,7 @@
   &__line {
     flex: 1;
     height: 1px;
-    background-color: $color-border;
+    background-color: var(--color-border);
     position: relative;
 
     &::after {
@@ -84,7 +84,7 @@
       transform: translateY(-50%);
       width: 1px;
       height: 32px;
-      background-color: $color-border;
+      background-color: var(--color-border);
     }
 
     &--left::after {
@@ -104,7 +104,7 @@
     white-space: nowrap;
 
     @include min-width($breakpoint-md) {
-      color: #8E949A;
+      color: var(--color-about-label);
     }
   }
 
@@ -141,7 +141,7 @@
     font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
     margin-bottom: $spacing-md;
-    color: $color-text-primary;
+    color: var(--color-text-primary);
 
     @include min-width($breakpoint-md) {
       font-size: $font-size-3xl;
@@ -165,14 +165,14 @@
 
   &__cta {
     @include button-base;
-    background: $color-bg-white;
+    background: var(--color-bg-body);
     color: $color-primary;
     padding: $spacing-md $spacing-xl;
     border-radius: $radius-full;
     font-weight: $font-weight-semibold;
 
     &:hover {
-      background: $color-bg-light;
+      background: var(--color-bg-surface);
       transform: translateY(-2px);
     }
   }

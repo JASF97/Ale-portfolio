@@ -8,7 +8,7 @@
   &__container {
     @include container;
     position: relative;
-     z-index: 5;
+    z-index: 5;
   }
 
   &__header {
@@ -21,7 +21,7 @@
   &__line {
     flex: 1;
     height: 1px;
-    background-color: $color-border;
+    background-color: var(--color-border);
     position: relative;
 
     &::after {
@@ -31,7 +31,7 @@
       transform: translateY(-50%);
       width: 1px;
       height: 32px;
-      background-color: $color-border;
+      background-color: var(--color-border);
     }
 
     &--left::after {
@@ -51,7 +51,7 @@
     white-space: nowrap;
 
     @include min-width($breakpoint-md) {
-      color: #8E949A;
+      color: var(--color-about-label);
     }
   }
 
@@ -123,7 +123,7 @@
   }
 
   &__info-item {
-    border-bottom: 1px solid $color-border-light;
+    border-bottom: 1px solid var(--color-border-light);
     padding-bottom: $spacing-md;
   }
 
@@ -144,7 +144,7 @@
   &__info-value {
     font-size: $font-size-base;
     font-weight: $font-weight-medium;
-    color: $color-text-primary;
+    color: var(--color-text-primary);
   }
 
   &__social {
@@ -192,6 +192,7 @@
     color: $color-text-primary;
     text-decoration: underline;
     transition: color $transition-fast;
+    z-index: 5;
 
     &:hover {
       color: $color-primary;
@@ -213,8 +214,8 @@
     padding: $spacing-md;
     font-family: $font-family-primary;
     font-size: $font-size-base;
-    color: $color-text-primary;
-    background: $color-bg-light;
+    color: var(--color-text-primary);
+    background: var(--color-bg-input);
     border: 2px solid transparent;
     border-radius: $radius-lg;
     transition: all $transition-fast;
@@ -226,7 +227,7 @@
     &:focus {
       outline: none;
       border-color: $color-primary;
-      background: $color-bg-white;
+      background: var(--color-bg-input-focus);
     }
   }
 

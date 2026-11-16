@@ -110,8 +110,8 @@
   &__tag {
     display: inline-block;
     padding: $spacing-xs $spacing-sm;
-    background: $color-bg-light;
-    color: $color-text-secondary;
+    background: var(--color-bg-surface);
+    color: var(--color-text-secondary);
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
     border-radius: $radius-full;
@@ -129,12 +129,12 @@
       width: fit-content;
       height: 45px;
       border-radius: 24px;
-      border: 0.53px solid #0E0734;
+      border: 0.53px solid var(--color-mobile-cta-border);
       padding: 12px;
       gap: 8px;
       font-size: $font-size-base;
       font-weight: $font-weight-semibold;
-      color: #0E0734;
+      color: var(--color-mobile-cta-text);
       background: transparent;
       margin-top: $spacing-sm;
       text-decoration: none;

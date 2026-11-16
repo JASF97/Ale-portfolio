@@ -20,7 +20,7 @@
 
   &__copyright {
     font-size: $font-size-sm;
-    color: $color-text-light;
+    color: var(--color-footer-text);
     text-align: center;
     margin: 0;
   }

@@ -4,6 +4,8 @@
 
 @use 'variables' as *;
 @use 'mixins' as *;
+@use 'themes/light';
+@use 'themes/dark';
 
 // Reset básico
 *,
@@ -16,17 +18,19 @@
 
 html {
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
   font-family: $font-family-primary;
   font-size: $font-size-base;
   line-height: 1.6;
-  color: $color-text-primary;
-  background-color: $color-bg-white;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {

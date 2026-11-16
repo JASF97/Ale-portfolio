@@ -198,7 +198,7 @@
   border-radius: $radius-xl;
   overflow: hidden;
   transition: all $transition-base;
-  background-color: #F5F3FF;
+  background-color: var(--color-card-bg);
 
   padding: 16px;
 
@@ -208,7 +208,7 @@
 
   @include min-width($breakpoint-md) {
     padding: 0px;
-    background-color: transparent;
+    background-color: var(--color-card-bg-md);
   }
 }
 

@@ -1,0 +1,54 @@
+// ===========================================
+// LIGHT THEME — Variables CSS Custom Properties
+// ===========================================
+
+:root,
+[data-theme="light"] {
+  // Fondos
+  --color-bg-body: #ffffff;
+  --color-bg-surface: #f8f5ff;
+  --color-bg-surface-alt: #F5F3FF;
+  --color-bg-input: #f8f5ff;
+  --color-bg-input-focus: #ffffff;
+
+  // Header
+  --color-header-bg: #ffffff;
+  --color-header-shadow: rgba(0, 0, 0, 0.03);
+  --color-mobile-menu-bg: #ffffff;
+
+  // Textos
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #898989;
+  --color-text-light: #9ca3af;
+  --color-text-muted: #8E949A;
+  --color-text-hero-dark: #041829;
+
+  // Bordes
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+
+  // Cards
+  --color-card-bg: #F5F3FF;
+  --color-card-bg-md: transparent;
+
+  // Marquee / Decorativos
+  --color-marquee-text: #8E949A;
+  --color-marquee-dot: #8E949A;
+
+  // Hero title selection corners (SVG inline)
+  --color-corner-fill: white;
+
+  // ProjectCard mobile CTA
+  --color-mobile-cta-border: #0E0734;
+  --color-mobile-cta-text: #0E0734;
+
+  // About section label
+  --color-about-label: #8E949A;
+
+  // Footer
+  --color-footer-text: #9ca3af;
+
+  // ScrollToTop
+  --color-scroll-bg: #947EFB;
+  --color-scroll-text: #ffffff;
+}

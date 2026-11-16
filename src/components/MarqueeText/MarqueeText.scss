@@ -24,7 +24,7 @@
       font-size: 24px;
       letter-spacing: -0.02em;
       line-height: 100%;
-      color: #8E949A;
+      color: var(--color-marquee-text);
       display: flex;
       align-items: center;
       gap: 24px;
@@ -35,7 +35,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: #8E949A;
+      background-color: var(--color-marquee-dot);
       flex-shrink: 0;
     }
   }
