@@ -43,7 +43,15 @@
 
   // Hero
   --color-hero-bg: #ffffff;
-  --hero-bg-opacity: 1;
+  // Degradados del hero (Figma claro). Capas de arriba hacia abajo.
+  --hero-gradients:
+    radial-gradient(ellipse 28.1% 64.6% at 104.7% 65.5%, rgba(246, 200, 130, 0.7) 0%, rgba(246, 200, 130, 0) 100%),
+    radial-gradient(ellipse 26.6% 61% at 80.5% 3.6%, rgba(243, 205, 239, 0.8) 0%, rgba(243, 205, 239, 0) 100%),
+    radial-gradient(ellipse 18% 52.1% at 23.4% 105.9%, rgba(249, 210, 255, 1) 0%, rgba(249, 210, 255, 0.75) 45%, rgba(249, 210, 255, 0) 100%),
+    radial-gradient(ellipse 11.7% 35.9% at -2.3% 89.8%, rgba(246, 200, 130, 1) 0%, rgba(246, 200, 130, 0.7) 45%, rgba(246, 200, 130, 0) 100%),
+    radial-gradient(ellipse 11.7% 26.9% at 8.6% 70%, rgba(249, 210, 255, 0.5) 0%, rgba(249, 210, 255, 0) 100%),
+    radial-gradient(ellipse 20.3% 46.7% at 6.25% 30.5%, rgba(249, 210, 255, 0.95) 0%, rgba(249, 210, 255, 0) 100%);
+  --hero-star-opacity: 1;
   --hero-grid-opacity: 1;
   --hero-grid-desktop-opacity: 0.4;
   --hero-blur-opacity: 1;

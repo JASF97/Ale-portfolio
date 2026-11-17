@@ -26,17 +26,15 @@
     border-radius: 24px;
     transition: background-color 0.3s ease;
 
-    // Fondo degradado del Figma. Va en una capa aparte para poder
-    // atenuarlo en modo oscuro sin tocar el contenido.
+    // Fondo degradado del Figma, definido por tema en styles/themes
+    // (--hero-gradients). Va en una capa aparte, debajo del contenido.
     &::before {
       content: '';
       position: absolute;
       inset: 0;
       z-index: 0;
-      background-image: url('../../assets/BG.svg');
-      background-size: cover;
-      background-position: center;
-      opacity: var(--hero-bg-opacity);
+      background-image: var(--hero-gradients);
+      background-repeat: no-repeat;
       pointer-events: none;
 
       @include max-width($breakpoint-lg) {
@@ -194,9 +192,10 @@
 
   &__star {
     position: absolute;
-    top: -22px;
-    right: 25px;
+    top: -32px;
+    right: 43px;
     z-index: 5;
+    opacity: var(--hero-star-opacity);
     
     @include max-width($breakpoint-md) {
       top: 15px;

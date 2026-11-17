@@ -42,14 +42,22 @@
 
   // Hero
   --color-hero-bg: #1D1B26;
-  --hero-bg-opacity: 0.16;
+  // Degradados del hero (Figma oscuro): marrón cálido arriba y a la derecha,
+  // morado a la izquierda, arriba a la derecha y abajo. Capas de arriba hacia abajo.
+  --hero-gradients:
+    radial-gradient(ellipse 24.2% 55.7% at 68.8% 92.5%, rgba(133, 63, 130, 0.25) 0%, rgba(133, 63, 130, 0) 100%),
+    radial-gradient(ellipse 25.8% 59.2% at 101.6% 68.2%, rgba(200, 140, 45, 0.12) 0%, rgba(200, 140, 45, 0) 100%),
+    radial-gradient(ellipse 21.9% 50.3% at 100.8% 21.5%, rgba(133, 63, 130, 0.3) 0%, rgba(133, 63, 130, 0) 100%),
+    radial-gradient(ellipse 31.3% 71.8% at -0.8% 70%, rgba(133, 63, 130, 0.265) 0%, rgba(133, 63, 130, 0) 100%),
+    radial-gradient(ellipse 28.1% 71.8% at 25% 10.8%, rgba(200, 140, 45, 0.14) 0%, rgba(200, 140, 45, 0) 100%);
+  --hero-star-opacity: 0.55;
   --hero-grid-opacity: 0.1;
   --hero-grid-desktop-opacity: 0.08;
   --hero-blur-opacity: 0.22;
-  --color-hero-cta-bg: #947EFB;
-  --color-hero-cta-bg-hover: #a793fc;
+  --color-hero-cta-bg: #9B8BFF;
+  --color-hero-cta-bg-hover: #ada0ff;
   --color-hero-cta-text: #0F0E13;
-  --color-corner-fill: #0F0E13;
+  --color-corner-fill: #ffffff;
 
   // ProjectCard mobile CTA
   --color-mobile-cta-border: #947EFB;
