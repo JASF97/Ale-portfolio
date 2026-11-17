@@ -2,28 +2,51 @@
 @use '../../styles/mixins' as *;
 
 .hero {
-  padding: 92px 16px 16px 16px;
+  padding-top: 92px;
+  padding-bottom: 16px;
+  @include page-gutter;
   position: relative;
   overflow: hidden;
 
   @include desktop {
-   padding: 148px 40px 40px 40px;
+    padding-top: 168px;
+    padding-bottom: 40px;
   }
 
   &__container {
     @include container;
     @include flex-between;
     gap: $spacing-lg;
-    padding: 44px 64px;
+    padding: 44px 48px;
     align-items: center;
     position: relative;
     overflow: hidden;
 
-    background-image: url('/src/assets/BG.svg');
-    background-size: cover;
-    background-position: center;
-
+    background-color: var(--color-hero-bg);
     border-radius: 24px;
+    transition: background-color 0.3s ease;
+
+    // Fondo degradado del Figma. Va en una capa aparte para poder
+    // atenuarlo en modo oscuro sin tocar el contenido.
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url('../../assets/BG.svg');
+      background-size: cover;
+      background-position: center;
+      opacity: var(--hero-bg-opacity);
+      pointer-events: none;
+
+      @include max-width($breakpoint-lg) {
+        display: none;
+      }
+    }
+
+    @include min-width($breakpoint-xl) {
+      min-height: 557px;
+    }
 
     @include max-width($breakpoint-xl) {
       padding: 64px 24px;
@@ -36,9 +59,6 @@
       gap: 40px;
     }
 
-    @include max-width($breakpoint-lg) {
-      background-image: none;
-    }
   }
 
   &__blur {
@@ -46,7 +66,8 @@
     // border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    
+    opacity: var(--hero-blur-opacity);
+
     @include desktop {
       display: none;
     }
@@ -110,6 +131,7 @@
     left: -35.02px;
 
     object-fit: contain;
+    opacity: var(--hero-grid-opacity);
   }
 
   &__grids--desktop {
@@ -128,20 +150,18 @@
       display: block;
       width: 600px;
       height: 600px;
-      // opacity: 1;
       top: 10%;
       left: auto;
       right: -205px;
-
-      opacity: 0.4;
+      opacity: var(--hero-grid-desktop-opacity);
     }
   }
 
   &__butterfly {
     position: absolute;
     z-index: 5;
-    top: 60%;
-    left: -10%;
+    top: 61.5%;
+    left: -18%;
 
     @include max-width($breakpoint-lg) {
       width: 70px;
@@ -161,6 +181,11 @@
       max-width: 380px;
     }
 
+    // Ajuste fino de la posición vertical del bloque de texto (Figma)
+    @include min-width($breakpoint-xl) {
+      padding-bottom: 7px;
+    }
+
     @include max-width($breakpoint-md) {
       flex: 1;
       max-width: 100%;
@@ -169,8 +194,8 @@
 
   &__star {
     position: absolute;
-    top: -40px;
-    right: 0;
+    top: -22px;
+    right: 25px;
     z-index: 5;
     
     @include max-width($breakpoint-md) {
@@ -184,6 +209,11 @@
     margin-bottom: $spacing-md;
     color: var(--color-text-hero-dark);
 
+    // Figma: el saludo va 8px más adentro que el recuadro del nombre
+    @include desktop {
+      padding-left: 8px;
+    }
+
     font-size: $font-size-base;
 
     @include min-width($breakpoint-md) {
@@ -193,8 +223,10 @@
 
   &__title {
     font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-lg;
+    margin-bottom: 23px;
     font-size: 88px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
 
     @include max-width($breakpoint-xl) {
       font-size: 56px;
@@ -215,7 +247,9 @@
       padding: 6px 14px;
       
       @include desktop {
-        padding: 8px 18px;
+        padding: 11px 21px 5px;
+        // Separación entre "Alejandra" y "Avendaño" del Figma
+        margin-bottom: 13px;
       }
       
       // Main border
@@ -223,25 +257,25 @@
         content: '';
         position: absolute;
         inset: 0;
-        border: 3px solid #947EFB;
+        border: 2px solid $color-primary;
         pointer-events: none;
       }
       
-      // Corner handles
+      // Tiradores de las esquinas (como una selección de Figma)
       &::after {
         content: '';
         position: absolute;
         inset: -7px;
         pointer-events: none;
         background:
-          // Top-left corner
-          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='%230F0E13' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 0 0,
-          // Top-right corner
-          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='%230F0E13' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 100% 0,
-          // Bottom-left corner
-          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='%230F0E13' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 0 100%,
-          // Bottom-right corner
-          url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='%230F0E13' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 100% 100%;
+          linear-gradient(var(--color-corner-fill), var(--color-corner-fill)) 2px 2px / 10px 10px no-repeat,
+          linear-gradient($color-primary, $color-primary) 0 0 / 14px 14px no-repeat,
+          linear-gradient(var(--color-corner-fill), var(--color-corner-fill)) calc(100% - 2px) 2px / 10px 10px no-repeat,
+          linear-gradient($color-primary, $color-primary) 100% 0 / 14px 14px no-repeat,
+          linear-gradient(var(--color-corner-fill), var(--color-corner-fill)) 2px calc(100% - 2px) / 10px 10px no-repeat,
+          linear-gradient($color-primary, $color-primary) 0 100% / 14px 14px no-repeat,
+          linear-gradient(var(--color-corner-fill), var(--color-corner-fill)) calc(100% - 2px) calc(100% - 2px) / 10px 10px no-repeat,
+          linear-gradient($color-primary, $color-primary) 100% 100% / 14px 14px no-repeat;
       }
     }
   }
@@ -264,7 +298,13 @@
     gap: 8px;
     font-size: $font-size-xl;
     border-radius: 50px;
-    background: #6F59E4;
+    background: var(--color-hero-cta-bg);
+    color: var(--color-hero-cta-text);
+    font-weight: $font-weight-semibold;
+
+    &:hover:not(:disabled) {
+      background: var(--color-hero-cta-bg-hover);
+    }
 
     @include max-width($breakpoint-md) {
       width: 280px;
@@ -275,7 +315,7 @@
   &__images {
     position: relative;
     width: 100%;
-    max-width: 492px;
+    max-width: 498px;
     height: 450px;
     z-index: 1;
 
@@ -315,7 +355,7 @@
 
     // Plan - center left
     &--plan {
-      top: 20%;
+      top: 20.7%;
       left: 0%;
       width: 100%;
       max-width: 240px;
@@ -336,11 +376,11 @@
 
     // Cursor - center
     &--cursor {
-      top: 56%;
-      left: 58%;
+      top: 58.5%;
+      left: 59.8%;
       transform: translate(-50%, -50%);
       width: 100%;
-      max-width: 150px;
+      max-width: 163px;
       z-index: 5;
       // animation: float-subtle-centered 5s ease-in-out infinite 1s;
 
@@ -360,7 +400,7 @@
 
     // Labels - top right
     &--labels {
-      top: 4%;
+      top: 6.2%;
       right: 0%;
       width: 100%;
       max-width: 237px;
@@ -380,7 +420,7 @@
 
     // Members - bottom right
     &--members {
-      bottom: -9%;
+      bottom: -11.3%;
       right: 0%;
       width: 100%;
       max-width: 237px;
@@ -425,13 +465,4 @@
   50% {
     transform: translate(-50%, -50%) translateY(-4px);
   }
-}
-
-// Light mode: restore white fill for hero title corner handles
-[data-theme="light"] .hero__title-line--name::after {
-  background:
-    url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 0 0,
-    url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 100% 0,
-    url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 0 100%,
-    url("data:image/svg+xml,%3Csvg width='14' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='12' height='12' fill='white' stroke='%23947EFB' stroke-width='2'/%3E%3C/svg%3E") no-repeat 100% 100%;
 }

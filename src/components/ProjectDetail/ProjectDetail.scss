@@ -3,8 +3,9 @@
 
 .project-detail {
   min-height: 100vh;
-  background-color: $color-bg-light;
+  background-color: var(--color-detail-bg);
   overflow: hidden;
+  transition: background-color 0.3s ease;
 
   &__container {
     @include container;
@@ -63,6 +64,27 @@
       filter: blur(150px);
     }
 
+    // Beach Butler (Figma: Ellipse 2404 y 2407 sobre un encabezado de 1440 × 714)
+    &--beach-1 {
+      width: 677px;
+      height: 629.61px;
+      top: 30%;
+      left: 65%;
+      opacity: 0.3;
+      background: #1CE3CC;
+      filter: blur(150px);
+    }
+
+    &--beach-2 {
+      width: 371px;
+      height: 371px;
+      top: -61px;
+      left: -164px;
+      opacity: 0.5;
+      background: #47EFB4;
+      filter: blur(154px);
+    }
+
     &--playerprops-1 {
       width: 371px;
       height: 371px;
@@ -95,6 +117,35 @@
     }
   }
 
+  // Ilustraciones decorativas del encabezado
+  &__header-art {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    max-width: none;
+
+    // FMF: patrón hexagonal pegado al borde izquierdo, que se desvanece
+    &--fmf-hex {
+      top: -32px;
+      left: -352px;
+      width: 536px;
+      height: 835px;
+      opacity: 0.2;
+      transform: rotate(180deg);
+      // (la imagen está girada: el degradado va "hacia la izquierda" de la imagen)
+      -webkit-mask-image: linear-gradient(to left, #000 0%, #000 55%, transparent 100%);
+      mask-image: linear-gradient(to left, #000 0%, #000 55%, transparent 100%);
+    }
+
+    // FMF: trazo grande del balón a la derecha
+    &--fmf-swirl {
+      top: -6.3%;
+      left: 55.76%;
+      width: 58.59%;
+      height: 144.23%;
+    }
+  }
+
   &__header-distortion {
     position: absolute;
     inset: 0;
@@ -106,29 +157,45 @@
     opacity: 6%;
   }
 
-  &__back {
+  // Barra superior: volver al inicio + cambio de tema
+  &__topbar {
     display: flex;
     align-items: center;
     gap: $spacing-sm;
     width: 100%;
-    height: 56px;
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: $font-size-base;
-    font-weight: $font-weight-normal;
+    min-height: 56px;
     margin-bottom: $spacing-3xl;
-    padding: $spacing-sm $spacing-md;
+    padding: $spacing-sm $spacing-sm $spacing-sm $spacing-md;
     background: #FFFFFF1A;
     border-radius: 100px;
-    transition: opacity $transition-base;
 
     @include max-width($breakpoint-md) {
       margin-bottom: $spacing-lg;
     }
 
+    @include min-width($breakpoint-md) {
+      padding-left: $spacing-xl;
+    }
+  }
+
+  &__back {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    min-height: 40px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    transition: opacity $transition-base;
+
     &:hover {
-      opacity: 1;
-      color: #FFFFFF;
+      opacity: 0.8;
+    }
+
+    svg {
+      flex-shrink: 0;
     }
   }
 
@@ -267,6 +334,7 @@
   }
 
   &__meta-label {
+    margin: 0;
     font-family: "Inter";
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
@@ -275,6 +343,7 @@
   }
 
   &__meta-value {
+    margin: 0;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
     color: #FFFFFFCC;
@@ -440,6 +509,7 @@
     letter-spacing: 0.05em;
     margin-bottom: $spacing-2xl;
     background: linear-gradient(182.14deg, #C7CFFF 1.9%, #FFFFFF 98.29%);
+    opacity: var(--detail-title-opacity);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -660,7 +730,7 @@
       left: -152px;
       opacity: 0.7;
       background: #F9D2FF;
-      filter: blur(100px);
+      filter: blur(100px) opacity(var(--detail-gradient-opacity));
     }
 
     &--2 {
@@ -669,6 +739,7 @@
       top: 38%;
       right: -10%;
       opacity: 0.3;
+      filter: opacity(var(--detail-gradient-opacity));
       background: radial-gradient(
         50% 50% at 50% 50%,
         #F6C882 0%,
@@ -697,6 +768,28 @@
     @include min-width($breakpoint-lg) {
       gap: 24px;
     }
+
+    // Tarjetas más pequeñas que en el inicio (Figma: "Otros proyectos")
+    @include min-width($breakpoint-md) {
+      .project-card__image-wrapper {
+        border-radius: $radius-xl;
+      }
+
+      .project-card__title {
+        font-size: $font-size-lg;
+      }
+
+      .project-card__description {
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+  // Otros proyectos + contacto: vuelven al fondo de página en modo oscuro
+  &__footer-area {
+    position: relative;
+    background-color: var(--color-detail-footer-bg);
+    transition: background-color 0.3s ease;
   }
 
   &__related-card {
@@ -791,6 +884,34 @@
     }
   }
 
+  // Galería genérica: N columnas en escritorio; en móvil 1 (o 2 si son 4)
+  &__columns-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+    align-items: start;
+
+    &--4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 768px) {
+      &--2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &--4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+
   &__design-title {
     position: absolute;
     top: -10px;
@@ -806,7 +927,8 @@
     text-transform: uppercase;
     line-height: 100%;
     letter-spacing: 0.05em;
-
+    opacity: var(--detail-title-opacity);
+    filter: var(--detail-title-filter);
 
     @media (min-width: 1080px) {
       top: 18px;
@@ -847,6 +969,7 @@
     line-height: 100%;
     letter-spacing: 0.05em;
     background: linear-gradient(166.93deg, #6EF1B9 8.93%, #FFFFFF 68.75%);
+    opacity: var(--detail-title-opacity);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -910,5 +1033,6 @@
   .projects {
     position: relative;
     overflow: visible;
+    padding-top: $spacing-3xl;
   }
 }

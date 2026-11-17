@@ -111,6 +111,11 @@ $z-index-modal: 500;
 $z-index-popover: 600;
 $z-index-tooltip: 700;
 
+// Margen lateral de página (Figma: 80px en 1440, 16px en móvil)
+$page-gutter-mobile: 16px;
+$page-gutter-tablet: 40px;
+$page-gutter-desktop: 80px;
+
 // Container
 $container-max-width: 1200px;
 $container-padding: $spacing-md;

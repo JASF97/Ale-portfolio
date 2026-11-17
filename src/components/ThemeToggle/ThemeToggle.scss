@@ -1,0 +1,101 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-family: $font-family-primary;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-header-control-border);
+  cursor: pointer;
+  transition: background-color $transition-fast, border-color $transition-fast,
+    color $transition-fast, transform $transition-fast;
+
+  &:hover {
+    background-color: var(--color-bg-surface);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &__icon {
+    display: inline-flex;
+    color: var(--color-header-control-icon);
+    animation: theme-toggle-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  &__label {
+    font-size: $font-size-lg;
+    line-height: 1;
+    // Epilogue se asienta alto en la caja: se compensa para centrarlo con el icono
+    padding-top: 3px;
+  }
+
+  // Píldora del header: "☀ Light" / "Dark ☾" (como en el Figma)
+  &--pill {
+    gap: 8px;
+    height: 40px;
+    padding: 0 11px;
+    border-radius: $radius-full;
+
+    [data-theme="dark"] & {
+      flex-direction: row-reverse;
+    }
+  }
+
+  // Solo icono (barra del detalle de proyecto, sobre fondo oscuro fijo)
+  &--icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+
+    .theme-toggle__icon {
+      color: inherit;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.16);
+    }
+  }
+
+  // Fila dentro del menú móvil
+  &--row {
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 8px;
+    border: none;
+    border-radius: 12px;
+    font-weight: $font-weight-medium;
+
+    .theme-toggle__label {
+      font-size: $font-size-base;
+    }
+
+    .theme-toggle__icon {
+      color: inherit;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+@keyframes theme-toggle-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}

@@ -5,36 +5,35 @@ import behanceIcon from "../../assets/Behance.svg";
 import frameContact from "../../assets/frame-contact.png";
 import { Footer } from "../Footer";
 import AnimatedSection from "../AnimatedSection";
+import SectionDivider from "../SectionDivider";
+import { useLanguage } from "../../context/useLanguage";
 
 export const Contact = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="contact" id="contact">
       <div className="contact__container">
-        <div className="contact__header">
-          <div className="contact__line contact__line--left"></div>
-          <span className="contact__label">Contáctame</span>
-          <div className="contact__line contact__line--right"></div>
-        </div>
+        <SectionDivider label={t.contact.title} className="contact__header" />
 
         <div className="contact__content">
           <AnimatedSection direction="right" delay={100}>
             <div className="contact__info">
               <div className="contact__left-info">
                 <h2 className="contact__left-title">
-                  Trabajemos juntos <img src={miscIcon} alt="" />
+                  {t.contact.heading} <img src={miscIcon} alt="" aria-hidden="true" />
                 </h2>
                 <p className="contact__left-description">
-                  Si tienes un proyecto en mente y quieres crear una experiencia
-                  digital que realmente impacte,{" "}
+                  {t.contact.text}{" "}
                   <span className="contact__left-description--bold">
-                    no dudes en escribirme.
+                    {t.contact.textBold}
                   </span>
                 </p>
               </div>
 
               <div className="contact__social">
                 <div className="contact__social-red">
-                  <img src={linkedInIcon} alt="" />
+                  <img src={linkedInIcon} alt="" aria-hidden="true" />
                   <a
                     href="https://www.linkedin.com/in/alejandragao/"
                     className="contact__social-link"
@@ -46,7 +45,7 @@ export const Contact = () => {
                 </div>
 
                 <div className="contact__social-red">
-                  <img src={behanceIcon} alt="" />
+                  <img src={behanceIcon} alt="" aria-hidden="true" />
                   <a
                     href="https://www.behance.net/alejandragao"
                     className="contact__social-link"
@@ -62,7 +61,7 @@ export const Contact = () => {
 
           <AnimatedSection direction="left" delay={200}>
             <div className="contact__right-info">
-              <h3 className="contact__right-title">Contáctame</h3>
+              <h3 className="contact__right-title">{t.contact.emailLabel}</h3>
               <a
                 href="mailto:alejandra18gao@gmail.com"
                 className="contact__right-link"
@@ -74,7 +73,14 @@ export const Contact = () => {
         </div>
       </div>
 
-      <img className="contact__frame" src={frameContact} alt="" />
+      <img
+        className="contact__frame"
+        src={frameContact}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
 
       <Footer />
     </section>

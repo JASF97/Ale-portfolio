@@ -26,3 +26,11 @@
     transform: translate(0, 0);
   }
 }
+// Menos movimiento: el contenido aparece en su sitio, sin desplazarse
+@media (prefers-reduced-motion: reduce) {
+  .animated-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -3,38 +3,40 @@
 
 .projects {
   @include section;
+  // Al llegar desde el menú, el header fijo no debe tapar el inicio
+  scroll-margin-top: 80px;
+
+  // Deja sitio a la cinta, que va posicionada encima del inicio de la sección
+  @include min-width(900px) {
+    padding-top: 110px;
+    scroll-margin-top: 40px;
+  }
 
   &__container {
-    @include container; 
+    @include container;
   }
 
   &__header {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: $spacing-lg;
-    margin: $spacing-2xl 0px;
+    margin: 0 0 $spacing-2xl;
 
-    @include max-width($breakpoint-md) {
-      margin: 0px 0px $spacing-2xl 0px;
+    // En escritorio la cinta "Trabajo seleccionado" hace de título (Figma)
+    @include min-width(900px) {
+      display: none;
     }
   }
 
   &__grid {
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(320px, 1fr)
-    );
+    grid-template-columns: 1fr;
 
-    @include min-width($breakpoint-lg) {
-      gap: 24px;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(380px, 1fr)
-      );
+    @include min-width($breakpoint-md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 24px;
+    }
+
+    @include min-width($breakpoint-xl) {
+      gap: 64px 32px;
     }
   }
 }

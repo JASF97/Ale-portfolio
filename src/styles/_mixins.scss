@@ -81,7 +81,7 @@
   font-size: $font-size-4xl;
   font-weight: $font-weight-bold;
   line-height: 1.2;
-  color: $color-text-primary;
+  color: var(--color-text-primary);
 
   @include min-width($breakpoint-md) {
     font-size: $font-size-5xl;
@@ -97,7 +97,7 @@
   font-size: $font-size-2xl;
   font-weight: $font-weight-semibold;
   line-height: 1.3;
-  color: $color-text-primary;
+  color: var(--color-text-primary);
 
   @include min-width($breakpoint-md) {
     font-size: $font-size-3xl;
@@ -109,7 +109,7 @@
   font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
   line-height: 1.4;
-  color: $color-text-primary;
+  color: var(--color-text-primary);
 
   @include min-width($breakpoint-md) {
     font-size: $font-size-2xl;
@@ -121,7 +121,7 @@
   font-size: $font-size-base;
   font-weight: $font-weight-normal;
   line-height: 1.6;
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
 }
 
 @mixin small-text {
@@ -129,7 +129,7 @@
   font-size: $font-size-sm;
   font-weight: $font-weight-normal;
   line-height: 1.5;
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
 }
 
 // Botones
@@ -185,10 +185,10 @@
 @mixin button-ghost {
   @include button-base;
   background-color: transparent;
-  color: $color-text-primary;
+  color: var(--color-text-primary);
 
   &:hover:not(:disabled) {
-    background-color: $color-bg-light;
+    background-color: var(--color-bg-surface);
   }
 }
 
@@ -208,24 +208,38 @@
 
   @include min-width($breakpoint-md) {
     padding: 0px;
+    border-radius: $radius-2xl;
     background-color: var(--color-card-bg-md);
   }
 }
 
 @mixin card-flat {
-  background-color: $color-bg-white;
+  background-color: var(--color-bg-body);
   border-radius: $radius-xl;
-  border: 1px solid $color-border;
+  border: 1px solid var(--color-border);
   overflow: hidden;
 }
 
 // Secciones
-@mixin section {
-  padding: $spacing-3xl 16px;
+@mixin page-gutter {
+  padding-left: $page-gutter-mobile;
+  padding-right: $page-gutter-mobile;
 
   @include min-width($breakpoint-md) {
-    padding: $spacing-3xl 56px;
+    padding-left: $page-gutter-tablet;
+    padding-right: $page-gutter-tablet;
   }
+
+  @include min-width($breakpoint-xl) {
+    padding-left: $page-gutter-desktop;
+    padding-right: $page-gutter-desktop;
+  }
+}
+
+@mixin section {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+  @include page-gutter;
 }
 
 @mixin section-title {
@@ -310,7 +324,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: $color-bg-light;
+    background: var(--color-bg-surface);
     border-radius: $radius-full;
   }
 

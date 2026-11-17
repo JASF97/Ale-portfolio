@@ -4,6 +4,7 @@
 .contact {
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 120px;
 
   &__container {
     @include container;
@@ -11,50 +12,21 @@
     z-index: 5;
   }
 
+  // El separador respeta el margen de página; el contenido lleva el suyo
   &__header {
-    display: flex;
-    align-items: center;
-    gap: $spacing-lg;
-    margin-bottom: $spacing-2xl;
-  }
-
-  &__line {
-    flex: 1;
-    height: 1px;
-    background-color: var(--color-border);
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 1px;
-      height: 32px;
-      background-color: var(--color-border);
-    }
-
-    &--left::after {
-      right: 0;
-    }
-
-    &--right::after {
-      left: 0;
-    }
-  }
-
-  &__label {
-    font-size: $font-size-2xl;
-    color: $color-text-primary;
-    text-transform: capitalize;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
+    margin-left: $page-gutter-mobile;
+    margin-right: $page-gutter-mobile;
 
     @include min-width($breakpoint-md) {
-      color: var(--color-about-label);
+      margin-left: $page-gutter-tablet;
+      margin-right: $page-gutter-tablet;
+    }
+
+    @include min-width($breakpoint-xl) {
+      margin-left: $page-gutter-desktop;
+      margin-right: $page-gutter-desktop;
     }
   }
-
 
   &__title {
     @include heading-2;
@@ -83,7 +55,7 @@
     }
 
     @include min-width($breakpoint-xl) {
-      padding: 72px 112px;
+      padding: 72px 152px;
     }
   }
 
@@ -111,6 +83,7 @@
 
   &__left-description {
     font-weight: 300;
+    color: var(--color-text-primary);
   }
 
   &__left-description--bold {
@@ -189,7 +162,7 @@
   &__right-link {
     font-size: $font-size-base;
     font-weight: $font-weight-light;
-    color: $color-text-primary;
+    color: var(--color-text-primary);
     text-decoration: underline;
     transition: color $transition-fast;
     z-index: 5;
@@ -221,7 +194,7 @@
     transition: all $transition-fast;
 
     &::placeholder {
-      color: $color-text-light;
+      color: var(--color-text-light);
     }
 
     &:focus {
@@ -263,5 +236,6 @@
     bottom: 0%;
     right: -38px;
     max-width: 390px;
+    opacity: var(--contact-frame-opacity);
   }
 }

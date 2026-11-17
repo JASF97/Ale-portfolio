@@ -17,8 +17,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
   transition: background-color 0.3s ease, color 0.3s ease;
+
+  // El scroll suave solo se activa si la persona no pidió menos movimiento
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -48,6 +52,11 @@ button {
   font-family: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
 ul,
 ol {
   list-style: none;
@@ -68,4 +77,16 @@ ol {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+// Menos movimiento: sin cinta, sin animaciones de entrada ni transiciones largas
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

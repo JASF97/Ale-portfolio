@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# Portafolio de Alejandra Avendaño
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio personal de Alejandra Avendaño, diseñadora UX/UI. Presenta sus proyectos, una sección "Sobre mí" y sus datos de contacto.
 
-Currently, two official plugins are available:
+## Tecnología
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + TypeScript
+- Vite 7
+- SCSS con convención BEM
+- React Router 7
 
-## React Compiler
+## Requisitos
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- Node 22 (ver `.nvmrc`). Con nvm: `nvm use`.
 
-## Expanding the ESLint configuration
+## Comandos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install      # instala dependencias
+npm run dev      # servidor de desarrollo
+npm run build    # revisa tipos y genera dist/
+npm run preview  # sirve dist/ para probar la versión final
+npm run lint     # ESLint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Páginas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Ruta | Contenido |
+| --- | --- |
+| `/` | Inicio: hero, proyectos, sobre mí y contacto |
+| `/project/:slug` | Detalle de un proyecto |
+| cualquier otra | Página 404 |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estructura
+
 ```
+public/               favicon e imagen para compartir (Open Graph)
+src/
+  assets/             imágenes (WebP) e iconos (SVG)
+  components/         un directorio por componente (.tsx + .scss)
+    Projects/projectsData.ts   datos de todos los proyectos
+  context/            tema claro/oscuro e idioma (providers + hooks)
+  i18n/               textos de la interfaz en español e inglés
+  hooks/              useIntersectionObserver (animaciones de entrada)
+  pages/              Landing y NotFound
+  styles/             variables, mixins y temas
+    themes/           colores por tema como variables CSS
+```
+
+## Cómo agregar un proyecto
+
+Todo sale de `src/components/Projects/projectsData.ts`. Agrega un objeto a `projects` con:
+
+- Datos de la tarjeta: `slug`, `title`, `description`, `imageSrc`.
+- Encabezado del detalle: `header.background` y, si aplica, `header.gradients` u `header.overlayImage`.
+- Galerías: `galleryMain` (obligatoria, 3 imágenes) y `galleries`, una lista de secciones con título y columnas de imágenes. Los proyectos anteriores usan además `galleryPro`, `galleryMobile`, `galleryDesign` y `galleryWeb`. Cada una se muestra solo si tiene datos.
+
+Las imágenes van en `src/assets/` en formato WebP.
+
+## Idiomas (español e inglés)
+
+- Los textos de la interfaz están en `src/i18n/translations.ts`, con un bloque `es` y otro `en` de la misma forma. TypeScript avisa si a uno le falta una clave.
+- Los textos de cada proyecto (`description`, `descriptionLong`, `meta` y títulos de galería) llevan las dos versiones en `projectsData.ts`: `{ es: "...", en: "..." }`.
+- El idioma elegido se guarda en `localStorage`; sin elección previa se usa inglés si el navegador está en inglés y español en cualquier otro caso.
+- En un componente: `const { lang, t } = useLanguage();`.
+
+## Tema claro y oscuro
+
+- Los colores viven en `src/styles/themes/_light.scss` y `_dark.scss` como variables CSS (`--color-*`).
+- El tema elegido se guarda en `localStorage`; sin elección previa se usa la preferencia del sistema.
+- `index.html` aplica el tema antes de que cargue React para que no parpadee.
+
+## Accesibilidad
+
+- Con "reducir movimiento" activado en el sistema, la cinta se detiene y las animaciones de entrada y el scroll suave se desactivan.
+
+## Diseño
+
+El diseño de referencia está en Figma (archivo "Portafolio"): versiones clara y oscura de escritorio, móvil y detalle de proyecto.

@@ -1,11 +1,14 @@
 // ===========================================
 // LIGHT THEME — Variables CSS Custom Properties
+// Valores tomados del Figma (Landing page-Desktop-Light)
 // ===========================================
 
 :root,
 [data-theme="light"] {
+  color-scheme: light;
+
   // Fondos
-  --color-bg-body: #ffffff;
+  --color-bg-body: #fbfbfb;
   --color-bg-surface: #f8f5ff;
   --color-bg-surface-alt: #F5F3FF;
   --color-bg-input: #f8f5ff;
@@ -15,6 +18,9 @@
   --color-header-bg: #ffffff;
   --color-header-shadow: rgba(0, 0, 0, 0.03);
   --color-mobile-menu-bg: #ffffff;
+  --color-header-control-border: #8e949a;
+  --color-header-control-icon: #8e949a;
+  --color-header-control-muted: #787b84;
 
   // Textos
   --color-text-primary: #1f2937;
@@ -33,22 +39,38 @@
 
   // Marquee / Decorativos
   --color-marquee-text: #8E949A;
-  --color-marquee-dot: #8E949A;
+  --color-marquee-dot: #dcdde0;
 
-  // Hero title selection corners (SVG inline)
-  --color-corner-fill: white;
+  // Hero
+  --color-hero-bg: #ffffff;
+  --hero-bg-opacity: 1;
+  --hero-grid-opacity: 1;
+  --hero-grid-desktop-opacity: 0.4;
+  --hero-blur-opacity: 1;
+  --color-hero-cta-bg: #6F59E4;
+  --color-hero-cta-bg-hover: #5b46cf;
+  --color-hero-cta-text: #ffffff;
+  --color-corner-fill: #ffffff;
 
   // ProjectCard mobile CTA
   --color-mobile-cta-border: #0E0734;
   --color-mobile-cta-text: #0E0734;
 
-  // About section label
+  // Separadores de sección
   --color-about-label: #8E949A;
+
+  // About
+  --color-about-card-bg: transparent;
+  --about-gradient-opacity: 1;
 
   // Footer
   --color-footer-text: #9ca3af;
 
-  // ScrollToTop
-  --color-scroll-bg: #947EFB;
-  --color-scroll-text: #ffffff;
+  // Detalle de proyecto (galerías)
+  --color-detail-bg: #f8f5ff;
+  --detail-title-opacity: 1;
+  --detail-title-filter: none;
+  --color-detail-footer-bg: transparent;
+  --detail-gradient-opacity: 1;
+  --contact-frame-opacity: 1;
 }

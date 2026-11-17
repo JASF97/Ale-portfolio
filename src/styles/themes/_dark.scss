@@ -1,20 +1,25 @@
 // ===========================================
 // DARK THEME — Variables CSS Custom Properties
-// Base: #0F0E13
+// Valores tomados del Figma (Landing page-Desktop-Dark). Base: #0F0E13
 // ===========================================
 
 [data-theme="dark"] {
+  color-scheme: dark;
+
   // Fondos
   --color-bg-body: #0F0E13;
-  --color-bg-surface: #1A1825;
-  --color-bg-surface-alt: #1E1C2E;
-  --color-bg-input: #1A1825;
+  --color-bg-surface: #1D1B26;
+  --color-bg-surface-alt: #262333;
+  --color-bg-input: #1D1B26;
   --color-bg-input-focus: #22203A;
 
   // Header
-  --color-header-bg: rgba(26, 24, 37, 0.95);
+  --color-header-bg: rgba(29, 27, 38, 0.95);
   --color-header-shadow: rgba(0, 0, 0, 0.3);
-  --color-mobile-menu-bg: #1A1825;
+  --color-mobile-menu-bg: #1D1B26;
+  --color-header-control-border: #a19eb7;
+  --color-header-control-icon: #a19eb7;
+  --color-header-control-muted: #F0EEFF;
 
   // Textos
   --color-text-primary: #F0EEFF;
@@ -24,31 +29,48 @@
   --color-text-hero-dark: #F0EEFF;
 
   // Bordes
-  --color-border: #2E2A42;
+  --color-border: #3a3848;
   --color-border-light: #211F34;
 
   // Cards
-  --color-card-bg: #1A1825;
-  --color-card-bg-md: #1A1825;
+  --color-card-bg: #1D1B26;
+  --color-card-bg-md: transparent;
 
   // Marquee / Decorativos
-  --color-marquee-text: #6B6490;
-  --color-marquee-dot: #6B6490;
+  --color-marquee-text: #9d9bab;
+  --color-marquee-dot: #9d9bab;
 
-  // Hero title selection corners (SVG inline)
-  --color-corner-fill: #1A1825;
+  // Hero
+  --color-hero-bg: #1D1B26;
+  --hero-bg-opacity: 0.16;
+  --hero-grid-opacity: 0.1;
+  --hero-grid-desktop-opacity: 0.08;
+  --hero-blur-opacity: 0.22;
+  --color-hero-cta-bg: #947EFB;
+  --color-hero-cta-bg-hover: #a793fc;
+  --color-hero-cta-text: #0F0E13;
+  --color-corner-fill: #0F0E13;
 
   // ProjectCard mobile CTA
   --color-mobile-cta-border: #947EFB;
   --color-mobile-cta-text: #947EFB;
 
-  // About section label
-  --color-about-label: #7A7499;
+  // Separadores de sección
+  --color-about-label: #9d9bab;
+
+  // About
+  --color-about-card-bg: #1D1B26;
+  --about-gradient-opacity: 0.18;
 
   // Footer
-  --color-footer-text: #6B6490;
+  --color-footer-text: #9d9bab;
 
-  // ScrollToTop
-  --color-scroll-bg: #947EFB;
-  --color-scroll-text: #ffffff;
+  // Detalle de proyecto (galerías)
+  --color-detail-bg: #1D1B26;
+  --detail-title-opacity: 0.35;
+  // Aclara los títulos de galería oscuros para que se lean sobre fondo oscuro
+  --detail-title-filter: brightness(2);
+  --color-detail-footer-bg: #0F0E13;
+  --detail-gradient-opacity: 0.25;
+  --contact-frame-opacity: 0.35;
 }

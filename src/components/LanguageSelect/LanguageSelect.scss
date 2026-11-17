@@ -1,0 +1,146 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.language-select {
+  position: relative;
+  flex-shrink: 0;
+  font-family: $font-family-primary;
+
+  // Píldora "ES ▾" del header (Figma)
+  &__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-width: 82px;
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid var(--color-header-control-border);
+    border-radius: $radius-full;
+    background: transparent;
+    color: var(--color-header-control-muted);
+    cursor: pointer;
+    transition: background-color $transition-fast, transform $transition-fast;
+
+    &:hover {
+      background-color: var(--color-bg-surface);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  &__code {
+    font-size: $font-size-lg;
+    line-height: 1;
+    // Epilogue se asienta alto en la caja: se compensa para centrarlo
+    padding-top: 3px;
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    color: var(--color-header-control-icon);
+    transition: transform $transition-fast;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: $z-index-dropdown;
+    min-width: 160px;
+    padding: 6px;
+    border-radius: 16px;
+    background: var(--color-mobile-menu-bg);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    font-size: $font-size-base;
+    color: var(--color-text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+      background-color: var(--color-bg-surface);
+    }
+
+    &--active {
+      color: $color-primary;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__option-code {
+    width: 24px;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text-secondary);
+  }
+
+  // Sobre el encabezado de color fijo del detalle de proyecto
+  &--on-dark &__trigger {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.16);
+    }
+  }
+
+  &--on-dark &__code {
+    font-size: $font-size-base;
+  }
+
+  &--on-dark &__chevron {
+    color: inherit;
+  }
+
+  &--on-dark &__trigger {
+    min-width: 0;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  // Menú móvil: las dos opciones a la vista
+  &--row {
+    display: flex;
+    gap: 8px;
+    padding: 4px 8px 12px;
+  }
+
+  &__chip {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-full;
+    background: transparent;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: background-color $transition-fast, border-color $transition-fast,
+      color $transition-fast;
+
+    &--active {
+      border-color: $color-primary;
+      background-color: var(--color-bg-surface);
+      color: $color-primary;
+    }
+  }
+}

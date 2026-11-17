@@ -1,0 +1,49 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section-divider {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-2xl;
+
+  &__line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+    position: relative;
+
+    // Marca vertical en el extremo que toca la etiqueta
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 32px;
+      background-color: var(--color-border);
+    }
+
+    &--left::after {
+      right: 0;
+    }
+
+    &--right::after {
+      left: 0;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-xl;
+    line-height: 1;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+
+    @include min-width($breakpoint-md) {
+      font-size: $font-size-2xl;
+      color: var(--color-about-label);
+    }
+  }
+}

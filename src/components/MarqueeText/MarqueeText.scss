@@ -2,50 +2,60 @@
 @use '../../styles/mixins' as *;
 
 .marquee {
-    width: stretch;
-    position: absolute;
-    overflow: hidden;
-    padding: 24px 0;
-  
-    &__track {
-      display: none;
-      align-items: center;
-      white-space: nowrap;
-      animation: marquee 20s linear infinite;
-      width: max-content;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  padding: 24px 0;
 
-      @include min-width(900px) {
-        display: flex;
-      }
-    }
-  
-    &__item {
-      font-weight: 400;
-      font-size: 24px;
-      letter-spacing: -0.02em;
-      line-height: 100%;
-      color: var(--color-marquee-text);
+  &__track {
+    display: none;
+    align-items: center;
+    white-space: nowrap;
+    animation: marquee 40s linear infinite;
+    width: max-content;
+
+    @include min-width(900px) {
       display: flex;
-      align-items: center;
-      gap: 24px;
-      padding-right: 24px;
-    }
-  
-    &__dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--color-marquee-dot);
-      flex-shrink: 0;
     }
   }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+
+  &__item {
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    line-height: 100%;
+    color: var(--color-marquee-text);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-right: 14px;
   }
-  
+
+  // Separador con la forma de la mariposa del logo (Figma)
+  &__dot {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    background-color: var(--color-marquee-dot);
+    -webkit-mask: url('../../assets/butterfly-mask.svg') center / contain no-repeat;
+    mask: url('../../assets/butterfly-mask.svg') center / contain no-repeat;
+    // Epilogue se asienta alto: se sube el icono para alinearlo con el texto
+    margin-top: -4px;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+// Menos movimiento: la cinta queda quieta
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}

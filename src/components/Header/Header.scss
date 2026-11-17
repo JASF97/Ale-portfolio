@@ -3,9 +3,9 @@
 
 .header {
   position: fixed;
-  top: 24px;
-  left: 40px;
-  right: 40px;
+  top: 16px;
+  left: $page-gutter-mobile;
+  right: $page-gutter-mobile;
   z-index: $z-index-fixed;
   background-color: var(--color-header-bg);
   backdrop-filter: blur(12px);
@@ -13,21 +13,30 @@
   border-radius: 100px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
-  @include max-width($breakpoint-lg) {
-    top: 16px;
-    left: 16px;
-    right: 16px;
+  @include min-width($breakpoint-md) {
+    left: $page-gutter-tablet;
+    right: $page-gutter-tablet;
+  }
+
+  @include min-width($breakpoint-lg) {
+    top: 34px;
+  }
+
+  @include min-width($breakpoint-xl) {
+    left: $page-gutter-desktop;
+    right: $page-gutter-desktop;
   }
 
   &__container {
     @include container;
     @include flex-between;
-    height: 96px;
-    padding: 16px 48px;
+    gap: $spacing-md;
+    height: 62px;
+    padding: 16px 24px;
 
-     @include max-width($breakpoint-lg) {
-      height: 62px;
-      padding: 16px 24px;
+    @include min-width($breakpoint-lg) {
+      height: 96px;
+      padding: 16px 48px;
     }
   }
 
@@ -35,39 +44,59 @@
     @include flex-center;
     gap: 16px;
     font-family: $font-family-heading;
-    font-size: $font-size-2xl;
+    font-size: $font-size-xl;
     font-weight: $font-weight-normal;
+    line-height: 1;
+    white-space: nowrap;
     color: var(--color-text-primary);
     transition: color $transition-fast;
 
-    &:hover {
-      color: var(--color-text-primary);
-    }
-
-    &-icon {
-      color: $color-primary;
-      font-size: $font-size-xl;
-    }
-
-    @include mobile {
-      font-size: $font-size-xl;
+    @include min-width($breakpoint-lg) {
+      font-size: $font-size-2xl;
     }
   }
 
   &__logo-img {
-    width: 38px;
-    height: 39px;
+    width: 30px;
+    height: 31px;
+
+    @include min-width($breakpoint-lg) {
+      width: 38px;
+      height: 39px;
+    }
+  }
+
+  // Grupo derecho: tema + navegación (+ menú en móvil)
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
   }
 
   &__nav {
+    margin-left: $spacing-sm;
+  }
 
+  // En móvil el cambio de tema vive dentro del menú
+  // En móvil el idioma y el tema viven dentro del menú
+  &__actions > &__control {
+    @include max-width($breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__nav {
     @include max-width($breakpoint-md) {
       display: none;
     }
 
     &-list {
       @include flex-center;
-      gap: $spacing-xl;
+      gap: $spacing-lg;
+
+      @include min-width($breakpoint-xl) {
+        gap: 28px;
+      }
     }
 
     &-item {
@@ -75,11 +104,18 @@
     }
 
     &-link {
-      @include small-text;
-      font-weight: $font-weight-medium;
-      color: var(--color-text-secondary);
+      display: block;
+      font-size: $font-size-base;
+      font-weight: $font-weight-normal;
+      line-height: 1;
+      color: var(--color-text-primary);
       padding: $spacing-sm 0;
+      white-space: nowrap;
       transition: color $transition-fast;
+
+      @include min-width($breakpoint-lg) {
+        font-size: $font-size-lg;
+      }
 
       &:hover {
         color: $color-primary;
@@ -102,56 +138,6 @@
     }
   }
 
-  // Actions container (theme toggle + hamburger)
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: $spacing-md;
-  }
-
-  // Theme toggle button
-  &__theme-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: var(--color-bg-surface);
-    color: var(--color-text-primary);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background $transition-base, transform $transition-fast, box-shadow $transition-base;
-
-    &:hover {
-      background: var(--color-bg-surface-alt);
-      transform: scale(1.08);
-      box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-  }
-
-  &__theme-icon {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0) rotate(90deg);
-    opacity: 0;
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
-    color: var(--color-text-primary);
-
-    &--active {
-      transform: scale(1) rotate(0deg);
-      opacity: 1;
-    }
-  }
-
   &__menu-btn {
     display: none;
     width: 24px;
@@ -159,7 +145,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0px;
+    padding: 0;
 
     @include max-width($breakpoint-md) {
       display: flex;
@@ -169,7 +155,11 @@
   &__menu-img {
     width: 100%;
     height: 100%;
-    filter: var(--img-invert, none);
+
+    // El icono es oscuro: se invierte en modo oscuro para que se vea
+    [data-theme="dark"] & {
+      filter: invert(1);
+    }
   }
 
   &__mobile-overlay {
@@ -181,7 +171,7 @@
 
   &__mobile-menu {
     position: fixed;
-    top: 64px;
+    top: 86px;
     left: 16px;
     right: 16px;
     background: var(--color-mobile-menu-bg);
@@ -190,7 +180,7 @@
     padding: 16px 20px;
     transition: background-color 0.3s ease;
 
-    @include desktop {
+    @include min-width($breakpoint-md + 1px) {
       display: none;
     }
   }
@@ -216,40 +206,9 @@
     }
   }
 
-  // Theme toggle inside mobile menu
   &__mobile-theme {
     border-top: 1px solid var(--color-border);
     margin-top: 12px;
     padding-top: 12px;
   }
-
-  &__mobile-theme-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 12px 8px;
-    border-radius: 12px;
-    font-size: $font-size-base;
-    font-weight: $font-weight-medium;
-    color: var(--color-text-primary);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background $transition-fast, color $transition-fast;
-
-    &:hover {
-      background: var(--color-bg-surface);
-      color: $color-primary;
-    }
-
-    svg {
-      flex-shrink: 0;
-    }
-  }
-}
-
-// Dark mode: invert hamburger icon so it's visible
-[data-theme="dark"] .header__menu-img {
-  filter: invert(1);
 }

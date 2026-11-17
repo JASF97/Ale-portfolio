@@ -1,0 +1,78 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.not-found {
+  position: relative;
+  min-height: 100vh;
+  @include flex-column-center;
+  gap: $spacing-md;
+  padding-top: 140px;
+  padding-bottom: $spacing-3xl;
+  @include page-gutter;
+  text-align: center;
+  overflow: hidden;
+
+  &__butterfly {
+    position: absolute;
+    width: 320px;
+    height: auto;
+    bottom: -90px;
+    right: -60px;
+    pointer-events: none;
+  }
+
+  &__code {
+    font-size: clamp(96px, 22vw, 200px);
+    font-weight: $font-weight-semibold;
+    line-height: 1;
+    color: $color-primary;
+  }
+
+  &__title {
+    font-family: $font-family-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text-primary);
+
+    @include min-width($breakpoint-md) {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__description {
+    max-width: 420px;
+    font-weight: $font-weight-light;
+    color: var(--color-text-secondary);
+  }
+
+  &__actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-lg;
+    margin-top: $spacing-lg;
+  }
+
+  &__cta {
+    @include button-primary;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 50px;
+    font-weight: $font-weight-semibold;
+    background: var(--color-hero-cta-bg);
+    color: var(--color-hero-cta-text);
+
+    &:hover:not(:disabled) {
+      background: var(--color-hero-cta-bg-hover);
+    }
+  }
+
+  &__link {
+    font-weight: $font-weight-medium;
+    color: $color-primary;
+    text-decoration: underline;
+  }
+}
